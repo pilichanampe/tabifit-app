@@ -3,9 +3,8 @@ class ButtonNormal extends HTMLElements {
     super();
 
     loadTemplate("#button-normal", this);
-  };
-   
-  
+  }; 
 }
 
 customElements.define("button-normal", ButtonNormal);
+
