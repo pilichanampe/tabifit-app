@@ -6,57 +6,86 @@
   <title>Tabifit App</title>
 </head>
 <body>
-<!-- SCREENS' STRUCTURE -->
+
+<!-- ////////////SCREENS' STRUCTURE//////////// -->
+
   <!-- Screen 1: Welcome -->
   <screen-app id="welcome">
-    <img src="">
+    <img-logo>
+    <button-normal></button-normal>
     <button-normal></button-normal>
   </screen-app>
 
   <!-- Screen 2: Series selection -->
   <screen-app id="series-selection">
-    
+    <title-special></title-special>
+    <counter-choice></counter-choice>
+    <buttons-nav></buttons-nav>
   </screen-app>
 
   <!-- Screen 3: Rounds selection -->
   <screen-app id="rounds-selection">
-
+    <title-special></title-special>
+    <counter-choice></counter-choice>
+    <buttons-nav></buttons-nav>
   </screen-app>
 
   <!-- Screen 4: Exercises selection -->
-  <screen-app id="exercises-selections">
-
+  <screen-app id="exercises-selection">
+    <title-special></title-special>
+    <exercises-list>
+      <exercise-item>Ejercicio 1</exercise-item>
+    </exercises-list>
+    <buttons-nav></buttons-nav>
   </screen-app>
 
   <!-- Screen 5: Initial count down -->
   <screen-app id="preparation">
-
+    <title-small></title-small>
+    <countdown-spinning></countdown-spinning>
   </screen-app>
 
   <!-- Screen 6: Activity -->
   <screen-app id="activity">
-
+    <div>
+      <counter-fraction></counter-fraction>
+      <counter-fraction></counter-fraction>
+    </div>
+    <countdown-spinning></countdown-spinning>
+    <title-normal></title-normal>
   </screen-app>
 
   <!-- Screen 7: Pause -->
   <screen-app id="pause">
-
+    <title-small></title-small>
+    <countdown-beating></countdown-beating>
   </screen-app>
 
   <!-- Screen 8:  Finishing the training-->
   <screen-app id="finish-training">
-
+    <title-normal></title-normal>
+    <img-logo></img-logo>
+    <button-normal></button-normal>
+    <button-normal></button-normal>
   </screen-app>
 
   <!-- Screen 9: Archive selection -->
   <screen-app id="archive-selection">
-
+    <title-special></title-special>
+    <button-normal></button-normal>
+    <buttons-nav></buttons-nav>
   </screen-app>
 
-  <!-- Screen 10: Welcome -->
+  <!-- Screen 10: Training saved -->
   <screen-app id="training-verification">
-
+    <title-special></title-special>
+    <activity-archive></activity-archive>
+    <activity-archive></activity-archive>
+    <exercises-archive></exercises-archive>
+    <buttons-nav></buttons-nav>
   </screen-app>
+
+  <!-- ////////////TEMPLATES' DECLARATION//////////// -->
 
 <!-- TEMPLATES' DECLARATION -->
   <template id="screen-app">
