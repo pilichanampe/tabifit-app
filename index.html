@@ -3,17 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="main-styles.css">
   <title>Tabifit App</title>
 </head>
 <body>
 
 <!-- ////////////SCREENS' STRUCTURE//////////// -->
-
+ 
   <!-- Screen 1: Welcome -->
   <screen-app id="welcome">
-    <img-logo>
-    <button-normal></button-normal>
-    <button-normal></button-normal>
+    <img src="app/img/logo-big.png" alt="Logo Tabifit">
+    <button-normal>COMENZAR</button-normal>
+    <button-normal>REPETIR SESIÓN</button-normal>
   </screen-app>
 
   <!-- Screen 2: Series selection -->
@@ -39,7 +40,7 @@
     <buttons-nav></buttons-nav>
   </screen-app>
 
-  <!-- Screen 5: Initial count down -->
+  <!-- Screen 5: Initial countdown -->
   <screen-app id="preparation">
     <title-small></title-small>
     <countdown-spinning></countdown-spinning>
@@ -89,68 +90,94 @@
 
 <!-- TEMPLATES' DECLARATION -->
   <template id="screen-app">
-    
+    <section>
+      <slot></slot>
+    </section>
+    <link rel="stylesheet" href="app/screen-app/screen-app.css">
   </template>
 
-  <template id="img-logo">
-    
-  </template>
+  
 
   <template id="title-special">
-    
+    <link rel="stylesheet" href="app/title-special/title-special.css">
   </template>
 
   <template id="title-normal">
     
+    <link rel="stylesheet" href="app/title-normal/title-normal.css">
   </template>
   
-  <template id="title-small">
-    
+  <template id="title-small">      
+    <slot>
+      <h1>Small title</h1>
+    </slot>
+    <link rel="stylesheet" href="app/title-small/title-small.css">
   </template>
 
   <template id="buttons-nav">
-    
+    <button></button>
+    <button></button>
+    <link rel="stylesheet" href="app/buttons-nav/buttons-nav.css">
   </template>
 
   <template id="button-normal">
-    
+    <button><slot>Normal button</slot></button>
+    <link rel="stylesheet" href="app/button-normal/button-normal.css">
   </template>
 
   <template id="counter-choice">
-    
+    <button class="decrement">-</button>
+    <div>8</div>
+    <button class="increment">+</button>
+    <link rel="stylesheet" href="app/counter-choice/counter-choice.css">
   </template>
 
   <template id="countdown-spinning">
-    
+    <link rel="stylesheet" href="app/countdown-spinning/countdown-spinning.css">
   </template>
 
   <template id="countdown-beating">
-    
+    <link rel="stylesheet" href="app/countdown-beating/countdown-beating.css">
   </template>
 
   <template id="counter-fraction">
-    
+    <link rel="stylesheet" href="app/counter-fraction/counter-fraction.css">
   </template>
 
   <template id="training-archive">
-    
+    <link rel="stylesheet" href="app/training-archive/training-archive.css">
   </template>
 
   <template id="exercises-list">
-    
+    <link rel="stylesheet" href="app/excercises-list/exercises-list.css">
   </template>
 
   <template id="exercise-item">
-    
+    <link rel="stylesheet" href="app/exercise-item/exercise-item.css">
   </template>
 
   <template id="exercises-archive">
-    
+    <link rel="stylesheet" href="app/exercises-archive/exercises-archive.css">
   </template>
 
   
 
-
-  <script src="button-normal/button-normal.js"></script>
+  <script src="utils.js"></script>
+  <script src="main.js"></script>
+  <script src="app/button-normal/button-normal.js"></script>
+  <script src="app/buttons-nav/buttons-nav.js"></script>
+  <script src="app/countdown-beating/countdown-beating.js"></script>
+  <script src="app/countdown-spinning/countdown-spinning.js"></script>
+  <script src="app/counter-choice/counter-choice.js"></script>
+  <script src="app/counter-fraction/counter-fraction.js"></script>
+  <script src="app/excercises-list/exercises-list.js"></script>
+  <script src="app/exercise-item/exercise-item.js"></script>
+  <script src="app/exercises-archive/exercises-archive.js"></script>
+  <script src="app/screen-app/screen-app.js"></script>
+  <script src="app/title-normal/title-normal.js"></script>
+  <script src="app/title-small/title-small.js"></script>
+  <script src="app/title-special/title-special.js"></script>
+  <script src="app/training-archive/training-archive.js"></script>
+  
 </body>
 </html>
