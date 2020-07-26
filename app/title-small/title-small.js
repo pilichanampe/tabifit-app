@@ -1,4 +1,4 @@
-class TitleSmall extends HTMLElements {
+class TitleSmall extends HTMLElement {
   constructor() {
     super();
 

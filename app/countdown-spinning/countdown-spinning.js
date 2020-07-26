@@ -1,4 +1,4 @@
-class CountdownSpinning extends HTMLElements {
+class CountdownSpinning extends HTMLElement {
   constructor() {
     super();
 

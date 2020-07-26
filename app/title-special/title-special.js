@@ -1,4 +1,4 @@
-class TitleSpecial extends HTMLElements {
+class TitleSpecial extends HTMLElement {
   constructor() {
     super();
 

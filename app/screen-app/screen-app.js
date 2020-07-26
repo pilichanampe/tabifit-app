@@ -1,4 +1,4 @@
-class ScreenApp extends HTMLElements {
+class ScreenApp extends HTMLElement {
   constructor() {
     super();
 

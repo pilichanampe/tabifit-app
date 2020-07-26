@@ -1,4 +1,4 @@
-class CountdownBeating extends HTMLElements {
+class CountdownBeating extends HTMLElement {
   constructor() {
     super();
 

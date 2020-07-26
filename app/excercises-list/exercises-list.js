@@ -1,4 +1,4 @@
-class ExercisesList extends HTMLElements {
+class ExercisesList extends HTMLElement {
   constructor() {
     super();
 

@@ -1,4 +1,4 @@
-class ImgLogo extends HTMLElements {
+class ImgLogo extends HTMLElement {
   constructor() {
     super();
 

@@ -1,4 +1,4 @@
-class CounterChoice extends HTMLElements {
+class CounterChoice extends HTMLElement {
   constructor() {
     super();
 

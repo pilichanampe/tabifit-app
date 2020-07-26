@@ -1,4 +1,4 @@
-class ButtonNormal extends HTMLElements {
+class ButtonNormal extends HTMLElement {
   constructor() {
     super();
 

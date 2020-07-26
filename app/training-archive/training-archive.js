@@ -1,4 +1,4 @@
-class TrainingArchive extends HTMLElements {
+class TrainingArchive extends HTMLElement {
   constructor() {
     super();
 

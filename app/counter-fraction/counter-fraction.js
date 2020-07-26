@@ -1,4 +1,4 @@
-class CounterFraction extends HTMLElements {
+class CounterFraction extends HTMLElement {
   constructor() {
     super();
 

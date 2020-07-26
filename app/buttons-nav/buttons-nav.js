@@ -1,4 +1,4 @@
-class ButtonsNav extends HTMLElements {
+class ButtonsNav extends HTMLElement {
   constructor() {
     super();
 
