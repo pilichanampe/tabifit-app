@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+} 
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;    
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  font-family: 'Roboto', sans-serif;
+  color: #fafafa;  
+  
+}
+
+
+#welcome img {
+  display: flex;
+  align-self: center;
+  width: 375px;
+  margin-bottom: 25px;
+}
+
+#series-selection {
+  display: none;
+}
+
+#rounds-selection {
+  display: none;
+}
+
+#exercises-selection {
+  display: none;
+}
+
+#preparation {
+  display: none;
+}
+
+#activity {
+  display: none;
+}
+
+#pause {
+  display: none;
+}
+
+#finish-training {
+  display: none;
+}
+
+#archive-selection {
+  display: none;
+}
+
+#training-verification {
+  display: none;
+}
