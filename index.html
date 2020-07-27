@@ -13,20 +13,28 @@
   <!-- Screen 1: Welcome -->
   <screen-app id="welcome">
     <img src="app/img/logo-big.png" alt="Logo Tabifit">
-    <button-normal>COMENZAR</button-normal>
-    <button-normal>REPETIR SESIÓN</button-normal>
+    <button-normal>Comenzar</button-normal>
+    <button-normal>Repetir sesión</button-normal>
   </screen-app>
 
   <!-- Screen 2: Series selection -->
   <screen-app id="series-selection">
-    <title-special></title-special>
+    <title-special>
+      <span slot="start">¿Cuántas</span>
+      <span slot="keyword">series</span>
+      <span slot="end">querés hacer?</span>
+    </title-special>
     <counter-choice></counter-choice>
     <buttons-nav></buttons-nav>
   </screen-app>
 
   <!-- Screen 3: Rounds selection -->
   <screen-app id="rounds-selection">
-    <title-special></title-special>
+    <title-special>
+      <span slot="start">¿Cuántas</span>
+      <span slot="keyword">vueltas</span>
+      <span slot="end">vas a hacer?</span>
+    </title-special>
     <counter-choice></counter-choice>
     <buttons-nav></buttons-nav>
   </screen-app>
@@ -72,14 +80,22 @@
 
   <!-- Screen 9: Archive selection -->
   <screen-app id="archive-selection">
-    <title-special></title-special>
+    <title-special>
+      <div slot="start">Elegí la</div>
+      <div slot="keyword">sesión</div>
+      <div slot="end">a repetir.</div>
+    </title-special>
     <button-normal></button-normal>
     <buttons-nav></buttons-nav>
   </screen-app>
 
   <!-- Screen 10: Training saved -->
   <screen-app id="training-verification">
-    <title-special></title-special>
+    <title-special>
+      <div slot="start">Esta es la</div>
+      <div slot="keyword">sesión</div>
+      <div slot="end">a repetir.</div>
+    </title-special>
     <activity-archive></activity-archive>
     <activity-archive></activity-archive>
     <exercises-archive></exercises-archive>
@@ -89,16 +105,17 @@
   <!-- ////////////TEMPLATES' DECLARATION//////////// -->
 
 <!-- TEMPLATES' DECLARATION -->
-  <template id="screen-app">
-    <section>
-      <slot></slot>
-    </section>
+  <template id="screen-app">    
+    <slot></slot>    
     <link rel="stylesheet" href="app/screen-app/screen-app.css">
   </template>
 
   
 
-  <template id="title-special">
+  <template id="title-special">    
+      <div class="start"><slot name="start">Title fragment</slot></div>
+      <div class="keyword"><slot name="keyword">keyword</slot></div>
+      <div class="end"><slot name="end">Title fragment</slot></div>    
     <link rel="stylesheet" href="app/title-special/title-special.css">
   </template>
 
