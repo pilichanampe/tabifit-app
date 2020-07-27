@@ -4,6 +4,10 @@
   box-sizing: border-box;
 } 
 
+:host {
+  box-sizing: border-box;
+}
+
 html, body {
   width: 100%;
   height: 100%;
@@ -13,14 +17,22 @@ html, body {
 
 body {
   display: flex;
-  flex-direction: column;    
+  flex-wrap: wrap;
+ /* flex-direction: column;    */
   justify-content: center;
   align-items: center;
   background: #ffffff;
   font-family: 'Roboto', sans-serif;
-  color: #fafafa;  
+  color: #fafafa;
+  --white: #ffffff;
+  --black: #000000;
+  --light-blue: #00C9FF73;  
+  --dark-blue: #0B5D7C;
+  --middle-blue: #4AB4DC;
+  --middle2-blue: #00C9FF;
   
 }
+
 
 
 #welcome img {
@@ -29,39 +41,64 @@ body {
   width: 375px;
   margin-bottom: 25px;
 }
-
+/* SCREEN 1 */
+#welcome {  
+  background-color: var(--light-blue);
+  justify-content: center;
+}
+/* SCREEN 2 */
 #series-selection {
-  display: none;
+  display: flex;
+
 }
 
-#rounds-selection {
-  display: none;
+#series-selection span[slot="keyword"] {
+  font-size: 6.9rem;
+  letter-spacing: 4px;
 }
-
+/* SCREEN 3 */
+#rounds-selection span[slot="keyword"] {
+  font-size: 6.9rem;
+}
+/* SCREEN 4 */
 #exercises-selection {
-  display: none;
+  display: flex;
+  
 }
-
+/* SCREEN 5 */
 #preparation {
-  display: none;
+  display: flex;
+  background-color: var(--middle2-blue);
 }
-
+/* SCREEN 6 */
 #activity {
-  display: none;
+  display: flex;
+  background-color: var(--dark-blue);
 }
-
+/* SCREEN 7 */
 #pause {
-  display: none;
+  display: flex;
 }
-
+/* SCREEN 8 */
 #finish-training {
-  display: none;
+  display: flex;
+  background-color: var(--middle-blue);
 }
-
+/* SCREEN 9 */
 #archive-selection {
-  display: none;
+  display: flex;
+}
+/* SCREEN 10 */
+#training-verification {
+  display: flex;
 }
 
-#training-verification {
-  display: none;
+/*PRUEBA PARA VER CÓMO CAMBIAR COLOR DE UN CUSTOM ELEMENT
+:host(section) > #series-selection {
+  background-color: rgb(173, 89, 89);
 }
+*/
+
+
+
+
