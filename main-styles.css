@@ -28,6 +28,7 @@ body {
   --black: #000000;
   --light-blue: #00C9FF73;  
   --dark-blue: #0B5D7C;
+  --dark2-blue: #07759c;
   --middle-blue: #4AB4DC;
   --middle2-blue: #00C9FF;
   
@@ -52,10 +53,6 @@ body {
 
 }
 
-#series-selection span[slot="keyword"] {
-  font-size: 6.9rem;
-  letter-spacing: 4px;
-}
 /* SCREEN 3 */
 #rounds-selection span[slot="keyword"] {
   font-size: 6.9rem;
@@ -82,8 +79,15 @@ body {
 /* SCREEN 8 */
 #finish-training {
   display: flex;
-  background-color: var(--middle-blue);
+  background-color: var(--middle2-blue);
 }
+
+button-normal {
+  --button-bg: var(--dark-blue);
+}
+
+
+
 /* SCREEN 9 */
 #archive-selection {
   display: flex;
@@ -99,6 +103,36 @@ body {
 }
 */
 
+/******** Styling the special-title for each case ********/
 
+#series-selection span[slot="keyword"] {
+  font-size: 6.9rem;
+  letter-spacing: 4px;
+}
 
+#archive-selection span[slot="keyword"], #training-verification span[slot="keyword"] {
+  font-size: 6.9rem;
+  letter-spacing: 4px;
+}
 
+#exercises-selection span[slot="keyword"] {
+  letter-spacing: -10px;
+  font-size: 6rem;
+}
+
+#archive-selection span[slot="start"], #training-verification span[slot="start"], #series-selection span[slot="start"], #rounds-selection span[slot="start"] {
+  position: relative;
+  top: 17px;  
+}
+
+#exercises-selection span[slot="start"] {
+  position: relative;
+  top: 4px;  
+}
+
+#archive-selection span[slot="end"], #training-verification span[slot="end"], #series-selection span[slot="end"], #rounds-selection span[slot="end"], #exercises-selection span[slot="end"] {
+  position: relative;
+  top: -10px;  
+}
+
+/**************************************************/

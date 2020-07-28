@@ -41,7 +41,11 @@
 
   <!-- Screen 4: Exercises selection -->
   <screen-app id="exercises-selection">
-    <title-special></title-special>
+    <title-special>
+      <span slot="start">¿Qué</span>
+      <span slot="keyword">ejercicios</span>
+      <span slot="end">vas a hacer?</span>
+    </title-special>
     <exercises-list>
       <exercise-item>Ejercicio 1</exercise-item>
     </exercises-list>
@@ -74,27 +78,27 @@
   <screen-app id="finish-training">
     <title-normal></title-normal>
     <img-logo></img-logo>
-    <button-normal></button-normal>
-    <button-normal></button-normal>
+    <button-normal background>guardar actividad</button-normal>
+    <button-normal>salir</button-normal>
   </screen-app>
 
   <!-- Screen 9: Archive selection -->
   <screen-app id="archive-selection">
     <title-special>
-      <div slot="start">Elegí la</div>
-      <div slot="keyword">sesión</div>
-      <div slot="end">a repetir.</div>
+      <span slot="start">Elegí la</span>
+      <span slot="keyword">sesión</span>
+      <span slot="end">a repetir.</span>
     </title-special>
-    <button-normal></button-normal>
+    <button-normal>abrir desde archivo</button-normal>
     <buttons-nav></buttons-nav>
   </screen-app>
 
   <!-- Screen 10: Training saved -->
   <screen-app id="training-verification">
     <title-special>
-      <div slot="start">Esta es la</div>
-      <div slot="keyword">sesión</div>
-      <div slot="end">a repetir.</div>
+      <span slot="start">Esta es la</span>
+      <span slot="keyword">sesión</span>
+      <span slot="end">a repetir.</span>
     </title-special>
     <activity-archive></activity-archive>
     <activity-archive></activity-archive>
