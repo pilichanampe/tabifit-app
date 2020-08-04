@@ -1,0 +1,22 @@
+:host {
+  display: flex;
+  color: var(--middle2-blue);
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  padding: 0 15px 0 15px;
+  
+}
+
+h1 {
+  font-size: 3.5rem;
+  font-weight: 500;
+  letter-spacing: -5px;
+  margin: 0;
+}
+
+div {
+  color: var(--middle-blue);
+  font-size: 7rem;
+  font-weight: 300;
+}

@@ -21,7 +21,7 @@ body {
  /* flex-direction: column;    */
   justify-content: center;
   align-items: center;
-  background: #ffffff;
+  background: #fafafa;
   font-family: 'Roboto', sans-serif;
   color: #fafafa;
   --white: #ffffff;
@@ -30,13 +30,12 @@ body {
   --dark-blue: #0B5D7C;
   --dark2-blue: #07759c;
   --middle-blue: #4AB4DC;
-  --middle2-blue: #00C9FF;
-  
+  --middle2-blue: #00C9FF;  
 }
 
 
 
-#welcome img {
+#welcome img, #finish-training img {
   display: flex;
   align-self: center;
   width: 375px;
@@ -45,7 +44,8 @@ body {
 /* SCREEN 1 */
 #welcome {  
   background-color: var(--light-blue);
-  justify-content: center;
+  justify-content: flex-end;
+  padding-bottom: 100px;
 }
 /* SCREEN 2 */
 #series-selection {
@@ -57,36 +57,57 @@ body {
 #rounds-selection span[slot="keyword"] {
   font-size: 6.9rem;
 }
+
 /* SCREEN 4 */
 #exercises-selection {
   display: flex;
   
 }
+
+
 /* SCREEN 5 */
 #preparation {
   display: flex;
+  justify-self: center;
   background-color: var(--middle2-blue);
 }
+
 /* SCREEN 6 */
 #activity {
   display: flex;
   background-color: var(--dark-blue);
 }
+
+.counter-fraction-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
 /* SCREEN 7 */
 #pause {
-  display: flex;
+  display: flex;  
 }
+
+
+
+.white {
+  color: var(--white);
+}
+
 /* SCREEN 8 */
 #finish-training {
   display: flex;
   background-color: var(--middle2-blue);
 }
 
-button-normal {
-  --button-bg: var(--dark-blue);
+#finish-training button-normal {
+  background-color: var(--dark-blue);
 }
 
-
+#finish-training #logout {
+  border: 2px solid var(--dark-blue);
+  background-color: transparent;
+}
 
 /* SCREEN 9 */
 #archive-selection {

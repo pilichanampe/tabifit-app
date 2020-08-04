@@ -1,0 +1,23 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  color: var(--middle-blue);
+  text-transform: uppercase;
+  margin: 0;
+  font-size: 1.5rem;
+
+}
+.container {
+  display: flex;
+}
+
+div {
+  font-size: 3rem;
+}
+.numerator, .denominator {
+ padding: 0 10px 0 10px;
+}

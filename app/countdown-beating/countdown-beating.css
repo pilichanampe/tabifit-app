@@ -1,0 +1,33 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.circle {
+  border-radius: 50%;
+  border: 5px solid var(--middle-blue);
+  width: 270px;
+  height: 270px;
+  position: absolute;
+  animation: blink 1s infinite;
+}
+
+.number {
+  font-family: inherit;
+  font-size: 9rem;
+  font-weight: 700;
+  color: var(--middle-blue);
+}
+
+@keyframes blink {
+  50% {
+    border-width: 12px;
+    opacity: 1;
+  }
+  100% {
+    border-width: 7px;
+    opacity: 0.7;
+  }
+}

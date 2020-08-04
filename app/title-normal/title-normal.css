@@ -1,0 +1,10 @@
+:host {
+  font-family: inherit;
+}
+
+h1 {
+  font-size: 5rem;
+  font-weight: 400;
+  letter-spacing: -7px;
+  margin: 0;
+}

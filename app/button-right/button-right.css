@@ -1,0 +1,19 @@
+button { 
+  background-color: var(--middle-blue);
+  padding: 0;
+  padding-left: 5px;
+  margin-top: 15px;
+  border: transparent;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;  
+}
+
+button:hover {
+  background-color: var(--dark-blue);
+}
+
+button:active {
+  background-color: var(--dark2-blue);
+  transition: background-color 0.1s;
+}

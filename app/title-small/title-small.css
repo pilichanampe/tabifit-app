@@ -1,5 +1,17 @@
-h1 {
-  font-size: 2rem;
-  color: red;
+:host {
+  color: var(--middle-blue);
+  font-family: inherit;
 }
 
+h1 {
+  font-size: 3rem;
+  letter-spacing: -4px;
+  font-weight: 400;
+  margin: 0;
+  
+
+  /*No estoy conforme con esta solución, pero no sé
+  cómo poner al componente countdown-spinning en el centro centro
+  de la pantalla... */
+  padding-top: 22px;
+}

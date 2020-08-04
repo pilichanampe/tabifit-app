@@ -1,9 +1,9 @@
-class ExerciseArchive extends HTMLElement {
+class ExercisesArchive extends HTMLElement {
   constructor() {
     super();
 
-    loadTemplate("#exercise-archive", this);
+    loadTemplate("#exercises-archive", this);
   }; 
 }
 
-customElements.define("exercise-archive", ExerciseArchive);
+customElements.define("exercises-archive", ExercisesArchive);

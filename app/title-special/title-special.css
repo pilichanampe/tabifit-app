@@ -1,8 +1,7 @@
 :host {
   display: flex;
   flex-direction: column;
-  min-width: 310px;
-  
+  min-width: 310px;   
 }
 
 .keyword {
@@ -11,8 +10,7 @@
   justify-content: center;
   color: var(--middle-blue);
   font-size: 6.3rem; 
-  letter-spacing: -6px;
-  
+  letter-spacing: -6px;  
 }
 
 div {

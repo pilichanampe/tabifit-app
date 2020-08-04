@@ -1,9 +1,11 @@
 :host {
-  display: block;
-}
-
-:host([background]) {
-  background-color: var(--button-bg, #4AB4DC);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
+  margin-top: 15px;
+  background-color: var(--middle-blue);
+  box-shadow: 10px 10px 23px -12px #000000c5;
 }
 
 button {
@@ -12,7 +14,42 @@ button {
   font-weight: bold;
   text-transform: uppercase;
   font-size: 1.3rem;
-  background-color: #4AB4DC;
+  background-color: transparent;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+  height: 60px;
+  width: 300px;
+  cursor: pointer;  
+  text-align: center;  
+}
+
+:host(:hover) {
+  background-color: var(--dark-blue);
+}
+
+:host(:active) {
+  background-color: var(--dark2-blue) ;
+  box-shadow: 1px 1px 10px 0px #a8a8a8;
+  transform: translateY(3px);
+}
+
+
+
+
+
+
+/*:host {
+  display: block;
+}
+
+button {
+  color: #fafafa;
+  font-family: inherit;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  background-color: var(--middle-blue);
   border: none;
   border-radius: 25px;
   padding: 10px 20px;
@@ -26,11 +63,11 @@ button {
 
 
 button:hover {
-  background-color: var(--dark-black);
+  background-color: var(--dark2-blue);
 }
 
 button:active {
   background-color: var(--dark2-blue) ;
   box-shadow: 1px 1px 10px 0px #a8a8a8;
   transform: translateY(3px);
-}
+}*/
