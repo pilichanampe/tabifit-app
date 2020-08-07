@@ -102,6 +102,7 @@ body {
 
 #finish-training button-normal {
   background-color: var(--dark-blue);
+  border: 2px solid var(--dark-blue);
 }
 
 #finish-training #logout {
