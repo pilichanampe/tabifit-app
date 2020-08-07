@@ -1,0 +1,20 @@
+{
+  "name": "tabifit-app",
+  "version": "1.0.0",
+  "description": "App for Tabata or HIIT training",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pilichanampe/tabifit-app.git"
+  },
+  "author": "Pilar Chanampe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pilichanampe/tabifit-app/issues"
+  },
+  "homepage": "https://github.com/pilichanampe/tabifit-app#readme"
+}
