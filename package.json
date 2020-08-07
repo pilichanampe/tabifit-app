@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/pilichanampe/tabifit-app/issues"
   },
-  "homepage": "https://github.com/pilichanampe/tabifit-app#readme"
+  "homepage": "https://github.com/pilichanampe/tabifit-app#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  }
 }
