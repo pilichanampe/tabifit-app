@@ -20,9 +20,9 @@ app.get('/ejercicios', (req, res, next) => {
   
 });
 
-app.post('/entrenamientos', (req, res, next => {
+app.post('/entrenamientos', (req, res, next) => {
   res.send('Aquí irá la configuración del entrenamientos');
-}))
+})
 
 app.listen(3000, () => {
   console.log('Listening on port 3000!');
