@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="main-styles.css">
+  <link rel="stylesheet" href="../public/css/main-styles.css">
   <title>Tabifit App</title>
 </head>
 <body>
@@ -12,7 +12,7 @@
  
   <!-- Screen 1: Welcome -->
   <screen-app id="welcome">
-    <img src="app/img/logo-big.png" alt="Logo Tabifit">
+    <img src="../public/img/logo-big.png" alt="Logo Tabifit">
     <button-normal>Comenzar</button-normal>
     <button-normal>Repetir sesión</button-normal>  
   </screen-app>
@@ -89,7 +89,7 @@
   <!-- Screen 8:  Finishing the training-->
   <screen-app id="finish-training">
     <title-normal>¡LISTO!</title-normal>
-    <img src="app/img/logo-big.png" alt="">
+    <img src="../public/img/logo-big.png" alt="">
     <button-normal>guardar actividad</button-normal>
     <button-normal id="logout">salir</button-normal>
   </screen-app>
@@ -129,7 +129,7 @@
 <!-- TEMPLATES' DECLARATION -->
   <template id="screen-app">    
     <slot></slot>    
-    <link rel="stylesheet" href="app/screen-app/screen-app.css">
+    <link rel="stylesheet" href="../web-components/screen-app/screen-app.css">
   </template>
 
   
@@ -138,44 +138,44 @@
       <div class="start"><slot name="start">Title fragment</slot></div>
       <div class="keyword"><slot name="keyword">keyword</slot></div>
       <div class="end"><slot name="end">Title fragment</slot></div>    
-    <link rel="stylesheet" href="app/title-special/title-special.css">
+    <link rel="stylesheet" href="../web-components/title-special/title-special.css">
   </template>
 
   <template id="title-normal">
     <h1><slot></slot></h1>
-    <link rel="stylesheet" href="app/title-normal/title-normal.css">
+    <link rel="stylesheet" href="../web-components/title-normal/title-normal.css">
   </template>
   
   <template id="title-small">      
     <h1><slot>Small Title</slot></h1>
-    <link rel="stylesheet" href="app/title-small/title-small.css">
+    <link rel="stylesheet" href="../web-components/title-small/title-small.css">
   </template>
 
   <template id="button-left">
-    <button><img src="app/img/nav-left-glyp.svg" alt=""></button>
-    <link rel="stylesheet" href="app/button-left/button-left.css">
+    <button><img src="../public/img/nav-left-glyp.svg" alt=""></button>
+    <link rel="stylesheet" href="../web-components/button-left/button-left.css">
   </template>
 
   <template id="button-right">
-    <button><img src="app/img/nav-right-glyph.svg" alt=""></button>
-    <link rel="stylesheet" href="app/button-right/button-right.css">
+    <button><img src="../public/img/nav-right-glyph.svg" alt=""></button>
+    <link rel="stylesheet" href="../web-components/button-right/button-right.css">
   </template>
 
   <template id="buttons-container">
     <slot></slot>
-    <link rel="stylesheet" href="app/buttons-container/buttons-container.css">
+    <link rel="stylesheet" href="../web-components/buttons-container/buttons-container.css">
   </template>
 
   <template id="button-normal">
     <button><slot>Normal button</slot></button>
-    <link rel="stylesheet" href="app/button-normal/button-normal.css">
+    <link rel="stylesheet" href="../web-components/button-normal/button-normal.css">
   </template>
 
   <template id="counter-choice">
-    <button class="decrement"><img src="app/img/minus.svg" alt=""></button>
+    <button class="decrement"><img src="../public/img/minus.svg" alt=""></button>
     <input type="number" min="1" max="10" value="5">
-    <button class="increment"><img src="app/img/plus.svg" alt=""></button>
-    <link rel="stylesheet" href="app/counter-choice/counter-choice.css">
+    <button class="increment"><img src="../public/img/plus.svg" alt=""></button>
+    <link rel="stylesheet" href="../web-components/counter-choice/counter-choice.css">
   </template>
 
   <template id="countdown-spinning">
@@ -184,14 +184,14 @@
     <div class="number">10</div>  
       
     
-    <link rel="stylesheet" href="app/countdown-spinning/countdown-spinning.css">
+    <link rel="stylesheet" href="../web-components/countdown-spinning/countdown-spinning.css">
   </template>
 
   <template id="countdown-beating">
     <div class="circle" custom-color></div>  
     <div class="number" custom-color>10</div>    
     
-    <link rel="stylesheet" href="app/countdown-beating/countdown-beating.css">
+    <link rel="stylesheet" href="../web-components/countdown-beating/countdown-beating.css">
   </template>
 
   <template id="counter-fraction">
@@ -202,18 +202,18 @@
       <div class="denominator">0</div>
     </div>
     
-    <link rel="stylesheet" href="app/counter-fraction/counter-fraction.css">
+    <link rel="stylesheet" href="../web-components/counter-fraction/counter-fraction.css">
   </template>
 
   <template id="activity-info">
     <h1><slot>Keyword</slot></h1>
     <div>0</div>
-    <link rel="stylesheet" href="app/activity-info/activity-info.css">
+    <link rel="stylesheet" href="../web-components/activity-info/activity-info.css">
   </template>
 
   <template id="exercises-list">
     <slot></slot>
-    <link rel="stylesheet" href="app/excercises-list/exercises-list.css">
+    <link rel="stylesheet" href="../web-components/excercises-list/exercises-list.css">
   </template>
 
   <template id="exercise-item">
@@ -221,33 +221,33 @@
       <input type="checkbox">
       <span class="checkmark"></span>
     </label>    
-    <link rel="stylesheet" href="app/exercise-item/exercise-item.css">
+    <link rel="stylesheet" href="../web-components/exercise-item/exercise-item.css">
   </template>
 
   <template id="exercises-archive">
     <h1><slot>Title</slot></h1>
     <p>Element, Element, Element, Element, Element, Element</p> 
-    <link rel="stylesheet" href="app/exercises-archive/exercises-archive.css">
+    <link rel="stylesheet" href="../web-components/exercises-archive/exercises-archive.css">
   </template>
   
 
-  <script src="utils.js"></script>
-  <script src="main.js"></script>
-  <script src="app/button-normal/button-normal.js"></script>
-  <script src="app/button-left/button-left.js"></script>
-  <script src="app/button-right/button-right.js"></script>
-  <script src="app/buttons-container/buttons-container.js"></script>
-  <script src="app/countdown-beating/countdown-beating.js"></script>
-  <script src="app/countdown-spinning/countdown-spinning.js"></script>
-  <script src="app/counter-choice/counter-choice.js"></script>
-  <script src="app/counter-fraction/counter-fraction.js"></script>
-  <script src="app/excercises-list/exercises-list.js"></script>
-  <script src="app/exercise-item/exercise-item.js"></script>
-  <script src="app/exercises-archive/exercises-archive.js"></script>
-  <script src="app/screen-app/screen-app.js"></script>
-  <script src="app/title-normal/title-normal.js"></script>
-  <script src="app/title-small/title-small.js"></script>
-  <script src="app/title-special/title-special.js"></script>
-  <script src="app/activity-info/activity-info.js"></script>  
+  <script src="../../utils.js"></script>
+  <script src="../public/js/main.js"></script>
+  <script src="../web-components/button-normal/button-normal.js"></script>
+  <script src="../web-components/button-left/button-left.js"></script>
+  <script src="../web-components/button-right/button-right.js"></script>
+  <script src="../web-components/buttons-container/buttons-container.js"></script>
+  <script src="../web-components/countdown-beating/countdown-beating.js"></script>
+  <script src="../web-components/countdown-spinning/countdown-spinning.js"></script>
+  <script src="../web-components/counter-choice/counter-choice.js"></script>
+  <script src="../web-components/counter-fraction/counter-fraction.js"></script>
+  <script src="../web-components/excercises-list/exercises-list.js"></script>
+  <script src="../web-components/exercise-item/exercise-item.js"></script>
+  <script src="../web-components/exercises-archive/exercises-archive.js"></script>
+  <script src="../web-components/screen-app/screen-app.js"></script>
+  <script src="../web-components/title-normal/title-normal.js"></script>
+  <script src="../web-components/title-small/title-small.js"></script>
+  <script src="../web-components/title-special/title-special.js"></script>
+  <script src="../web-components/activity-info/activity-info.js"></script>  
 </body>
 </html>

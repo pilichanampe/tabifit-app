@@ -1,9 +1,18 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
+const morgan = require('morgan');
+const path = require('path');
+// Settings
+app.set('port', process.env.PORT || 3000);
+//app.set('views', path.join(__dirname, 'views'));
+
+// Set static folder
+app.use(express.static(path.join(__dirname + '/tabifit-app')));
 
 // Middlewares
 app.use(express.json());
+app.use(morgan('dev'));
 app.use(cors());
 
 let ejercicios = [];
@@ -22,8 +31,8 @@ app.get('/ejercicios', (req, res, next) => {
 
 app.post('/entrenamientos', (req, res, next) => {
   res.send('Aquí irá la configuración del entrenamientos');
-})
+});
 
-app.listen(3000, () => {
-  console.log('Listening on port 3000!');
+app.listen(app.get('port'), () => {
+  console.log('Listening on server', app.get('port'));
 })
