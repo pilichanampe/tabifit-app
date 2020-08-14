@@ -4,6 +4,10 @@ class CountdownBeating extends HTMLElement {
 
     loadTemplate("#countdown-beating", this);
   }; 
+
+  connectedCallback() {
+    
+  }
 }
 
 customElements.define("countdown-beating", CountdownBeating);

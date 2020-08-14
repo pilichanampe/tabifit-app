@@ -49,43 +49,43 @@ body {
 }
 /* SCREEN 2 */
 #series-selection {
-  display: flex;
+  display: none;
 
 }
 
 /* SCREEN 3 */
-#rounds-selection span[slot="keyword"] {
-  font-size: 6.9rem;
+#rounds-selection {
+  display: none;
 }
 
 /* SCREEN 4 */
 #exercises-selection {
-  display: flex;
+  display: none;
   
 }
 
 
 /* SCREEN 5 */
 #preparation {
-  display: flex;
+  display: none;
   justify-self: center;
   background-color: var(--middle2-blue);
 }
 
 /* SCREEN 6 */
 #activity {
-  display: flex;
+  display: none;
   background-color: var(--dark-blue);
 }
 
 .counter-fraction-container {
-  display: flex;
+  display: none;
   justify-content: space-around;
   width: 100%;
 }
 /* SCREEN 7 */
 #pause {
-  display: flex;  
+  display: none;
 }
 
 
@@ -96,7 +96,7 @@ body {
 
 /* SCREEN 8 */
 #finish-training {
-  display: flex;
+  display: none;
   background-color: var(--middle2-blue);
 }
 
@@ -112,11 +112,11 @@ body {
 
 /* SCREEN 9 */
 #archive-selection {
-  display: flex;
+  display: none;
 }
 /* SCREEN 10 */
 #training-verification {
-  display: flex;
+  display: none;
 }
 
 /*PRUEBA PARA VER CÓMO CAMBIAR COLOR DE UN CUSTOM ELEMENT
@@ -130,6 +130,11 @@ body {
 #series-selection span[slot="keyword"] {
   font-size: 6.9rem;
   letter-spacing: 4px;
+}
+
+
+#rounds-selection span[slot="keyword"] {
+  font-size: 6.9rem;
 }
 
 #archive-selection span[slot="keyword"], #training-verification span[slot="keyword"] {

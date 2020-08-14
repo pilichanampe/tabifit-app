@@ -4,6 +4,11 @@ class ButtonLeft extends HTMLElement {
 
     loadTemplate("#button-left", this);
   }; 
+
+connectedCallback() {
+  
+}
+
 }
 
 customElements.define("button-left", ButtonLeft);

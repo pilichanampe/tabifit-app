@@ -13,8 +13,8 @@
   <!-- Screen 1: Welcome -->
   <screen-app id="welcome">
     <img src="../public/img/logo-big.png" alt="Logo Tabifit">
-    <button-normal>Comenzar</button-normal>
-    <button-normal>Repetir sesión</button-normal>  
+    <button-normal id="start">Comenzar</button-normal>
+    <button-normal id="repeat">Repetir sesión</button-normal>  
   </screen-app>
 
   <!-- Screen 2: Series selection -->
@@ -129,7 +129,7 @@
 <!-- TEMPLATES' DECLARATION -->
   <template id="screen-app">    
     <slot></slot>    
-    <link rel="stylesheet" href="../web-components/screen-app/screen-app.css">
+    <link rel="stylesheet" href="../public/components/screen-app/screen-app.css">
   </template>
 
   
@@ -138,42 +138,42 @@
       <div class="start"><slot name="start">Title fragment</slot></div>
       <div class="keyword"><slot name="keyword">keyword</slot></div>
       <div class="end"><slot name="end">Title fragment</slot></div>    
-    <link rel="stylesheet" href="../web-components/title-special/title-special.css">
+    <link rel="stylesheet" href="../public/components/title-special/title-special.css">
   </template>
 
   <template id="title-normal">
     <h1><slot></slot></h1>
-    <link rel="stylesheet" href="../web-components/title-normal/title-normal.css">
+    <link rel="stylesheet" href="../public/components/title-normal/title-normal.css">
   </template>
   
   <template id="title-small">      
     <h1><slot>Small Title</slot></h1>
-    <link rel="stylesheet" href="../web-components/title-small/title-small.css">
+    <link rel="stylesheet" href="../public/components/title-small/title-small.css">
   </template>
 
   <template id="button-left">
     <button><img src="../public/img/nav-left-glyp.svg" alt=""></button>
-    <link rel="stylesheet" href="../web-components/button-left/button-left.css">
+    <link rel="stylesheet" href="../public/components/button-left/button-left.css">
   </template>
 
   <template id="button-right">
     <button><img src="../public/img/nav-right-glyph.svg" alt=""></button>
-    <link rel="stylesheet" href="../web-components/button-right/button-right.css">
+    <link rel="stylesheet" href="../public/components/button-right/button-right.css">
   </template>
 
   <template id="buttons-container">
     <slot></slot>
-    <link rel="stylesheet" href="../web-components/buttons-container/buttons-container.css">
+    <link rel="stylesheet" href="../public/components/buttons-container/buttons-container.css">
   </template>
 
   <template id="button-normal">
     <button><slot>Normal button</slot></button>
-    <link rel="stylesheet" href="../web-components/button-normal/button-normal.css">
+    <link rel="stylesheet" href="../public/components/button-normal/button-normal.css">
   </template>
 
   <template id="counter-choice">
     <button class="decrement"><img src="../public/img/minus.svg" alt=""></button>
-    <input type="number" min="1" max="10" value="5">
+    <input type="number" min="1" max="10">
     <button class="increment"><img src="../public/img/plus.svg" alt=""></button>
     <link rel="stylesheet" href="../public/components/counter-choice/counter-choice.css">
   </template>
@@ -231,7 +231,8 @@
   </template>
   
 
-  <script src="../../utils.js"></script>
+  <script src="../utils.js"></script>
+  <script src="../navigation.js"></script>
   <script src="../public/js/main.js"></script>
   <script src="../public/components/button-normal/button-normal.js"></script>
   <script src="../public/components/button-left/button-left.js"></script>
