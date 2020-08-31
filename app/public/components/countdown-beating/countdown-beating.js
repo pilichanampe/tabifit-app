@@ -2,8 +2,12 @@ class CountdownBeating extends HTMLElement {
   constructor() {
     super();
     loadTemplate("#countdown-beating", this);
-    this.counter = 10;
+    this.duration = this.getAttribute('duration');
   }; 
+
+  static get observedAttributes() {
+    return [ "duration" ];
+  }
 
   connectedCallback() {
    // this.setCountdown();    
