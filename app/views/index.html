@@ -52,9 +52,7 @@
       <span slot="keyword">ejercicios</span>
       <span slot="end">vas a hacer?</span>
     </title-special>
-    <exercises-list>
-      <exercise-item>Ejercicio 1</exercise-item>
-      <exercise-item>Ejercicio 1</exercise-item>
+    <exercises-list>      
     </exercises-list>
     <buttons-container>
       <button-left></button-left>
@@ -213,7 +211,7 @@
   </template>
 
   <template id="exercise-item">
-    <label class="container">Item
+    <label class="container"><slot>Item</slot>
       <input type="checkbox">
       <span class="checkmark"></span>
     </label>    

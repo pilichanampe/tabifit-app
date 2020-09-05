@@ -31,11 +31,6 @@ app.get('/', (req, res) => {
   console.log(__dirname);
 });
 
-
-
-
-
-
 app.listen(app.get('port'), () => {
   console.log('Listening on holiss server', app.get('port'));
 })

@@ -2,16 +2,14 @@ const express = require("express");
 
 // Maneja /ejercicios
 const router = express.Router();
-
-const ejercicios = [
-  { nombre: 'Flexiones'},
-  { nombre: 'Sentadillas'},
-  { nombre: 'Abdominales'},
-];
+const db = require('../../database');
 
 router.get('/', (req, res, next) => {
-  res.send({ ejercicios });
-  
+  db.select()
+  .from('ejercicios')
+  .then( ejercicios => {
+    res.send({ ejercicios });
+  });  
 });
 
 module.exports = router;

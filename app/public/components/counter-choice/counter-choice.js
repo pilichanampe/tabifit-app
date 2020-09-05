@@ -17,13 +17,13 @@ class CounterChoice extends HTMLElement {
     let number = this.shadowRoot.querySelector("input");
     
     if(this.hasAttribute('series')) {
-      number.value = this.series;
-      this.counter = this.series;
-      console.log('valor de counter en series es', this.counter);
+      number.value = parseInt(this.series);
+      this.counter = parseInt(this.series);
+     // console.log('valor de counter en series es', this.counter);
     } else if(this.hasAttribute('rounds')) {
-      number.value = this.rounds;
-      this.counter = this.rounds;
-      console.log('valor de counter en rondas es', this.counter);
+      number.value = parseInt(this.rounds);
+      this.counter = parseInt(this.rounds);
+     // console.log('valor de counter en rondas es', this.counter);
     }
    
     incrementButton.addEventListener('click', () => {
@@ -96,7 +96,7 @@ class CounterChoice extends HTMLElement {
   updateNumber() {
     let number = this.shadowRoot.querySelector("input");
     number.value = this.counter;
-    console.log("el contenido de number es", number.value);
+    //console.log("el contenido de number es", number.value);
   }
 
   writeNumber() {

@@ -1,7 +1,64 @@
-///// COMPONENTS BEHAVIOUR /////
+///// EXERCISES /////
+function getExercises() {
+  const exercisesList = document.querySelector('#exercises-selection exercises-list');
+
+  fetch('/ejercicios')
+  .then(res => res.json())
+  .then(resExercises => {
+    
+    for(exercise of resExercises.ejercicios) {
+      const exerciseItem = document.createElement('exercise-item');
+      exerciseItem.textContent = exercise.nombre;
+      exerciseItem.dataset.id = exercise.id;
+      exercisesList.appendChild(exerciseItem);
+    }      
+  });
+     
+    
+}
+
+function getRoutine() {
+  const button = document.querySelector('#exercises-selection button-right');  
+
+  button.addEventListener('click', async () => {
+    const numberSeries = document.querySelector('#series-selection counter-choice').counter; 
+    const numberRounds = document.querySelector('#rounds-selection counter-choice').counter;
+    const exerciseList = document.querySelector('#exercises-selection exercises-list');
+    
+    const ejercicios = [];
+    
+    for(exercise of exerciseList.children) {
+      if(exercise.isChecked()) {
+        ejercicios.push(parseInt(exercise.dataset.id));
+      }
+    }
+    const routine = { 
+      series: numberSeries,
+      vueltas: numberRounds,
+      // los ejercicios aun están hardcodeados
+      ejercicios: ejercicios};
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(routine)
+    }
+
+    const response = await fetch('/entrenamientos', options);
+    const json = await response.json();
+  });  
+}
 
 
 
+
+
+getExercises();
+
+
+getRoutine();
+  
 
 
 
