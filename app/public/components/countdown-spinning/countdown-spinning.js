@@ -2,8 +2,8 @@ class CountdownSpinning extends HTMLElement {
   constructor() {
     super();
     loadTemplate("#countdown-spinning", this);
-    this.counter = 10;
     this.duration = this.getAttribute('duration');
+    this.counter = this.duration;
   }; 
 
   static get observedAttributes() {
@@ -22,13 +22,16 @@ class CountdownSpinning extends HTMLElement {
     })
     */
     buttonNext.addEventListener('click', () => {
+       /*
       if(this.duration === "10") {
         this.counter = 10;
       }
       
       if(this.duration === "20") {
         this.counter = 20;
-      }      
+      }
+      */  
+      this.setNumber();    
       this.setCountdown();
       
     });
@@ -36,6 +39,10 @@ class CountdownSpinning extends HTMLElement {
     
   }
 
+  setNumber() {
+    const numberElement = this.shadowRoot.querySelector('.number');
+    numberElement.textContent = this.duration;
+  }
   setCountdown() {
     const numberElement = this.shadowRoot.querySelector('.number');
     const spinningBorder = this.shadowRoot.querySelector('.circle');
@@ -45,9 +52,9 @@ class CountdownSpinning extends HTMLElement {
         spinningBorder.style.animation = 'none'; 
         return;
       }  
-      this.counter--;
       spinningBorder.style.animation = '1s rotate infinite';
-      numberElement.innerHTML = this.counter;
+      this.counter--;
+      numberElement.textContent = this.counter;
       //console.log('numberElement en setInterval', numberElement.textContent);
     }, 1000);  
   }

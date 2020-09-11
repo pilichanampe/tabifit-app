@@ -63,14 +63,14 @@ body {
 
 /* SCREEN 5 */
 #preparation {
-  display: none;
+  display: flex;
   justify-self: center;
   background-color: var(--middle2-blue);
 }
 
 /* SCREEN 6 */
 #activity {
-  display: none;
+  display: flex;
   background-color: var(--dark-blue);
 }
 
@@ -81,7 +81,7 @@ body {
 }
 /* SCREEN 7 */
 #pause {
-  display: none;
+  display: flex;
 }
 
 .white {

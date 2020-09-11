@@ -4,7 +4,7 @@ const db = knex({
   connection: {
     filename: "./tabifit.db"
   },
-  useNullAsDefault: true
+  //useNullAsDefault: true
 });
 
 module.exports = db;

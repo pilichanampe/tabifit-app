@@ -12,9 +12,7 @@ function getExercises() {
       exerciseItem.dataset.id = exercise.id;
       exercisesList.appendChild(exerciseItem);
     }      
-  });
-     
-    
+  });    
 }
 
 function getRoutine() {
@@ -35,8 +33,9 @@ function getRoutine() {
     const routine = { 
       series: numberSeries,
       vueltas: numberRounds,
-      // los ejercicios aun están hardcodeados
-      ejercicios: ejercicios};
+      ejercicios: ejercicios
+    };
+
     const options = {
       method: 'POST',
       headers: {
@@ -47,16 +46,11 @@ function getRoutine() {
 
     const response = await fetch('/entrenamientos', options);
     const json = await response.json();
+    console.log('soy un console', json)
   });  
 }
 
-
-
-
-
 getExercises();
-
-
 getRoutine();
   
 
