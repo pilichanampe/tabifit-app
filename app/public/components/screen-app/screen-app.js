@@ -13,7 +13,7 @@ class ScreenApp extends HTMLElement {
     const countdownPrep = document.querySelector('#preparation countdown-spinning'); 
     const countdownActivity = document.querySelector('#activity countdown-spinning'); 
     const countdownPause = document.querySelector('#pause countdown-beating'); 
-    
+    /*
     if(this.contains(countdownPrep)) {
       console.log("HOLA PREP", countdownPrep.duration);
     }  
@@ -25,7 +25,10 @@ class ScreenApp extends HTMLElement {
     if(this.contains(countdownPause)) {
       console.log("HOLA PAUSE", countdownPause.duration);
     }    
-    
+    */
+
+    const serieCounter = document.querySelector('#activity counter-fraction');
+    console.log(serieCounter.getNumerator());
   }   
   
 }

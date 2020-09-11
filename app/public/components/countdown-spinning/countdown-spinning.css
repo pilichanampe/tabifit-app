@@ -15,7 +15,7 @@
   width: 270px;
   height: 270px;
   position: absolute;
-  animation: 1s rotate infinite;
+  /*animation: 1s rotate infinite;*/
   transform: rotate(-45deg);
   
 }

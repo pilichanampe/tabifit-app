@@ -45,8 +45,8 @@ function getRoutine() {
     }
 
     const response = await fetch('/entrenamientos', options);
-    const json = await response.json();
-    console.log('soy un console', json)
+    const dataRoutine = await response.json();
+    console.log('soy un console', dataRoutine)
   });  
 }
 

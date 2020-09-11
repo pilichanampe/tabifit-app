@@ -31,18 +31,34 @@ class CountdownSpinning extends HTMLElement {
         this.counter = 20;
       }
       */  
-      this.setNumber();    
+
+      // creé la función setNumber para que me cargue el primer número de la cuenta regresiva, pero no lo está haciendo ahora... no sé por qué
+      //this.setNumber();    
+      this.startCountdown();
       this.setCountdown();
+      
       
     });
     
     
   }
-
+  // Me parece que esta función no hace falta... la dejo por las dudas, todavía.
   setNumber() {
     const numberElement = this.shadowRoot.querySelector('.number');
     numberElement.textContent = this.duration;
   }
+  
+  startCountdown() {
+    const numberElement = this.shadowRoot.querySelector('.number');
+    const spinningBorder = this.shadowRoot.querySelector('.circle');
+    
+    spinningBorder.style.animation = '1s rotate infinite';
+    //this.counter--;
+    numberElement.textContent = this.counter;
+    
+    //console.log('numberElement en setInterval', numberElement.textContent);
+  }
+  /*
   setCountdown() {
     const numberElement = this.shadowRoot.querySelector('.number');
     const spinningBorder = this.shadowRoot.querySelector('.circle');
@@ -58,6 +74,19 @@ class CountdownSpinning extends HTMLElement {
       //console.log('numberElement en setInterval', numberElement.textContent);
     }, 1000);  
   }
+  */
+ setCountdown() {
+  setInterval(() => {
+    const spinningBorder = this.shadowRoot.querySelector('.circle');
+    if(this.counter === 1) {
+      this.stopCountdown(this.setCountdown());        
+      spinningBorder.style.animation = 'none'; 
+      return;
+    }  
+    this.counter--;
+    this.startCountdown();
+  }, 1000);
+ } 
 
   stopCountdown(countdown) {
     clearInterval(countdown);    

@@ -63,15 +63,19 @@
   <!-- Screen 5: Initial countdown -->
   <screen-app id="preparation">
     <title-small class="white">comienza en</title-small>
-    <countdown-spinning duration="30" class="countdown"></countdown-spinning>
+    <countdown-spinning duration="10" class="countdown"></countdown-spinning>
     <title-normal>¡vamos!</title-normal>
   </screen-app>
 
   <!-- Screen 6: Activity -->
   <screen-app id="activity">
     <div class="counter-fraction-container">
-      <counter-fraction>vuelta</counter-fraction>
-      <counter-fraction>serie</counter-fraction>
+      <counter-fraction>
+        <div slot="title">serie</div>        
+      </counter-fraction>
+      <counter-fraction>
+        <div slot="title">vuelta</div>        
+      </counter-fraction>
     </div>
     <countdown-spinning duration="20"class="countdown"></countdown-spinning>
     <title-normal>Abs.</title-normal>
@@ -189,11 +193,11 @@
   </template>
 
   <template id="counter-fraction">
-    <h1><slot>title</slot></h1>
+    <h1><slot name="title">title</slot></h1>
     <div class="container">
-      <div class="numerator">0</div>
+      <div class="numerator"><slot name="numerator">0</slot></div>
       <div>/</div>
-      <div class="denominator">0</div>
+      <div class="denominator"><slot name="denominator">0</slot></div>
     </div>
     
     <link rel="stylesheet" href="../public/components/counter-fraction/counter-fraction.css">
