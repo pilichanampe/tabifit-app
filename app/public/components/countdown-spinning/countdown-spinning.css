@@ -35,3 +35,14 @@
     transform: rotate(313deg);
   }
 }
+
+@keyframes blink {
+  50% {
+    border-width: 12px;
+    opacity: 1;
+  }
+  100% {
+    border-width: 7px;
+    opacity: 0.7;
+  }
+}

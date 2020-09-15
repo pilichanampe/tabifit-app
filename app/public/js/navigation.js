@@ -56,7 +56,7 @@ activityNav.isClicked(activityNav.prevButton, '#preparation');
 activityNav.isClicked(activityNav.nextButton, '#pause');
 
 /// Navigation Screen 7: Pause ///
-const pauseNav = new Navigation('#pause', '#pause title-small', '#pause countdown-beating');
+const pauseNav = new Navigation('#pause', '#pause title-small', '#pause countdown-spinning');
 
 pauseNav.isClicked(pauseNav.prevButton, '#activity');
 pauseNav.isClicked(pauseNav.nextButton, '#finish-training');

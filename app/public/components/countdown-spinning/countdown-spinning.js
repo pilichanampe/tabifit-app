@@ -6,11 +6,14 @@ class CountdownSpinning extends HTMLElement {
     this.counter = this.duration;
   }; 
 
-  static get observedAttributes() {
-    return [ "duration" ];
-  }
-
   connectedCallback() {
+    if(this.hasAttribute('pause')) {
+      const circle = this.shadowRoot.querySelector('.circle');
+      const number = this.shadowRoot.querySelector('.number');
+      number.style.color = 'var(--middle-blue)';
+      circle.style.borderColor = 'var(--middle-blue)';
+      
+    }
     const buttonNext = document.querySelector('#exercises-selection button-right');
     // TODO: revisar contenido de este custom event
 
@@ -50,9 +53,12 @@ class CountdownSpinning extends HTMLElement {
   
   startCountdown() {
     const numberElement = this.shadowRoot.querySelector('.number');
-    const spinningBorder = this.shadowRoot.querySelector('.circle');
-    
-    spinningBorder.style.animation = '1s rotate infinite';
+    const border = this.shadowRoot.querySelector('.circle');
+    if(this.hasAttribute('pause')) {
+      border.style.animation = 'blink 1s infinite';
+    } else {
+      border.style.animation = '1s rotate infinite';
+    }
     //this.counter--;
     numberElement.textContent = this.counter;
     
@@ -77,10 +83,39 @@ class CountdownSpinning extends HTMLElement {
   */
  setCountdown() {
   setInterval(() => {
-    const spinningBorder = this.shadowRoot.querySelector('.circle');
+    const screen = document.querySelector('#pause')
+    const border = this.shadowRoot.querySelector('.circle');
+    const number = this.shadowRoot.querySelector('.number');
+    const titleRelax = document.querySelector('#pause title-small');
+    if(this.hasAttribute('pause')) {
+      // The change generates visually at second 3
+      if(this.counter === 4) {
+        // por qué no me toma ningun cambio en animation??? No me deja parar el blink ni tampoco poner el rotate.
+        border.style.animation = 'rotate 1s infinite';
+        //el cambio de color hace que no se vea el título... Después mejoro para que no se muestre realmente.
+        titleRelax.style.color = 'var(--middle2-blue)';
+        //border.style.animation = '1s rotate infinite';
+        screen.style.backgroundColor = 'var(--middle2-blue)';
+        border.style.borderRightColor = 'transparent';
+        border.style.borderBottomColor = 'transparent';
+        border.style.borderLeftColor = 'var(--white)';
+        border.style.borderTopColor = 'var(--white)';
+        number.style.color = 'var(--white)';
+      }
+    }
+  
     if(this.counter === 1) {
       this.stopCountdown(this.setCountdown());        
-      spinningBorder.style.animation = 'none'; 
+      border.style.animation = 'none';
+      titleRelax.style.color = 'var(--middle-blue)';
+      screen.style.backgroundColor = 'var(--white)';
+      if(this.hasAttribute('pause')) {
+        border.style.borderRightColor = 'transparent';
+        border.style.borderBottomColor = 'transparent';
+        border.style.borderLeftColor = 'var(--middle-blue)';
+        border.style.borderTopColor = 'var(--middle-blue)'; 
+        number.style.color = 'var(--middle-blue)';
+      }
       return;
     }  
     this.counter--;
@@ -103,6 +138,10 @@ class CountdownSpinning extends HTMLElement {
      const countdownElement = document.querySelector('#preparation countdown-spinning');
      const countdownNumber = countdownElement.shadowRoot.querySelector('.number');
      console.log('queriendo mostrar valor de .number: ', countdownElement);
+   }
+
+   getNumber() {
+     return this.shadowRoot.querySelector('.number');
    }
 }
 

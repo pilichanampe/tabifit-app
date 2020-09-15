@@ -71,3 +71,18 @@ router.post('/', (req, res) => {
   });  
 });
 module.exports = router;
+
+//////////////// REVISAR SI HACE FALTA ESTA FUNCIÓN EN OTRO LADO, O DEBO BORRARLA DIRECTAMENTE /////////
+/*
+function stepsInPairs() {
+  const steps = [];
+  for(let i = 0; i < pasosVuelta.length; i++) {
+      
+      if(pasosVuelta.indexOf(pasosVuelta[i]) % 2 === 0) {
+          steps.push([pasosVuelta[i], pasosVuelta[i + 1]]);
+      }
+      
+  }
+  return steps;
+}
+*/
