@@ -15,7 +15,7 @@ class CounterFraction extends HTMLElement {
   }
 
   getDenominator() {
-    return this.shadowRoot.querySelector('.numerator');
+    return this.shadowRoot.querySelector('.denominator');
   }
 }
 

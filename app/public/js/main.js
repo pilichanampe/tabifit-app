@@ -1,3 +1,5 @@
+//const { multiplyRounds, startRoutine } = require("./routine");
+
 ///// EXERCISES /////
 function getExercises() {
   const exercisesList = document.querySelector('#exercises-selection exercises-list');
@@ -5,13 +7,16 @@ function getExercises() {
   fetch('/ejercicios')
   .then(res => res.json())
   .then(resExercises => {
-    
+    console.log(resExercises);
     for(exercise of resExercises.ejercicios) {
       const exerciseItem = document.createElement('exercise-item');
       exerciseItem.textContent = exercise.nombre;
       exerciseItem.dataset.id = exercise.id;
+      exerciseItem.dataset.abrev = exercise.abreviatura;
       exercisesList.appendChild(exerciseItem);
-    }      
+    }
+    
+    
   });    
 }
 
@@ -22,6 +27,7 @@ function getRoutine() {
     const numberSeries = document.querySelector('#series-selection counter-choice').counter; 
     const numberRounds = document.querySelector('#rounds-selection counter-choice').counter;
     const exerciseList = document.querySelector('#exercises-selection exercises-list');
+    const screen = document.querySelector('#preparation');
     
     const ejercicios = [];
     
@@ -46,7 +52,13 @@ function getRoutine() {
 
     const response = await fetch('/entrenamientos', options);
     const dataRoutine = await response.json();
-    console.log('soy un console', dataRoutine)
+    const buttonNext = document.querySelector('#exercises-selection button-right');
+    const allRounds = multiplyRounds(dataRoutine.vueltas, dataRoutine.pasosVuelta);    
+    screen.startTotalCountdown(allRounds, dataRoutine);
+
+    // creating the Routine String
+    createRoutineString(dataRoutine);
+
   });  
 }
 

@@ -37,6 +37,7 @@ router.post('/', (req, res) => {
   
   //Intento de mostrar el error, pero no funciona
   if(req.body.ejercicios.length === 0) {
+    
     res.status(400).send({
       error: {
         tipo: 'falta_parametro',
@@ -58,18 +59,23 @@ router.post('/', (req, res) => {
    .returning(["id", "fecha", "vuelta", "series", "ejercicios"])
    //Acá armo las respuestas como quiero
   .then(data => {
-    //Acá tengo que acomodar la respuesta como yo quiero... pasosVuelta, etc...
-    
+    //Acá tengo que acomodar la respuesta como yo quiero... pasosVuelta, etc...    
     res.status(201).send({ 
       id: data[0],
       fecha: new Date().toJSON(),     
       vueltas: req.body.vueltas,
       series: req.body.series,
       ejercicios: req.body.ejercicios,
-      pasosVuelta: createRoundSteps(req.body.series, req.body.ejercicios)});
-      //console.log( data, { pasosVuelta: createRoundSteps(req.body.series, req.body.ejercicios) } );
+      pasosVuelta: createRoundSteps(req.body.series, req.body.ejercicios)  });
+      
   });  
 });
+
+router.post('/importar', (req, res) => {
+  
+})
+
+
 module.exports = router;
 
 //////////////// REVISAR SI HACE FALTA ESTA FUNCIÓN EN OTRO LADO, O DEBO BORRARLA DIRECTAMENTE /////////

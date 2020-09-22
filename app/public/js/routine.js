@@ -1,16 +1,3 @@
-///// Automatic timer routine logic /////
-/*function startRoutine(seriesTotal, roundsTotal) {
-  let preparation = CounterChoice.counter;
-  seriesTotal = CounterChoice.series;
-  roundsTotal = CounterChoice.rounds;
-  let duration = CounterChoice.duration;
-  console.log("preparation", preparation, 'series', seriesTotal, 'rounds', roundsTotal, 'duration', duration);
-}
-*/
-
-//console.log(preparation.duration, activity.duration, pause.duration);
-
-
 function createRoundSteps(series, exerciseList) {
   const pasosVuelta = [];
   for(let i = 0; i < series; i++) {
@@ -44,8 +31,23 @@ function multiplyRounds(roundsNumb, roundStepsList) {
   return allRounds;
 }
 
+function createRoutineString(dataRoutine) {
+  const year = dataRoutine.fecha.slice(0, 4);
+  const month = dataRoutine.fecha.slice(5, 7);
+  const day = dataRoutine.fecha.slice(8, 10);
+  const hour = (dataRoutine.fecha.slice(11, 13) - 3).toString();
+  const minutes = dataRoutine.fecha.slice(14, 16);
+  const seconds = dataRoutine.fecha.slice(17, 19);
+  const series = dataRoutine.series.toString().padStart(2, '*');
+  const rounds = dataRoutine.vueltas.toString().padStart(2, '*');
+  const exercises = dataRoutine.ejercicios.toString();    
 
+  return year.concat(month, day, hour, minutes, seconds, series, rounds, exercises);
+}
+
+/*
 module.exports = {
   createRoundSteps,
   multiplyRounds
 }
+*/

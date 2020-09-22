@@ -61,16 +61,20 @@ body {
 }
 
 
-/* SCREEN 5 */
+/* SCREEN 5 - PREPARATION */
 #preparation {
-  display: flex;
+  display: none;
   justify-self: center;
   background-color: var(--middle2-blue);
 }
 
+#preparation title-normal {
+  visibility: hidden;
+}
+
 /* SCREEN 6 */
 #activity {
-  display: flex;
+  display: none;
   background-color: var(--dark-blue);
 }
 
@@ -81,7 +85,7 @@ body {
 }
 /* SCREEN 7 */
 #pause {
-  display: flex;
+  display: none;
 }
 
 .white {
