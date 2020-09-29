@@ -5,6 +5,7 @@ class CountdownSpinning extends HTMLElement {
     this.duration = this.getAttribute('duration');
     this.counter = this.duration;
   }
+
 }
 
 customElements.define("countdown-spinning", CountdownSpinning);

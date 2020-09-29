@@ -40,14 +40,72 @@ function createRoutineString(dataRoutine) {
   const seconds = dataRoutine.fecha.slice(17, 19);
   const series = dataRoutine.series.toString().padStart(2, '*');
   const rounds = dataRoutine.vueltas.toString().padStart(2, '*');
-  const exercises = dataRoutine.ejercicios.toString();    
+  let exercises = ""
+  if (dataRoutine.ejercicios) {exercises = dataRoutine.ejercicios.toString();}
+  if (dataRoutine.lista_ejercicios) {exercises = dataRoutine.lista_ejercicios.toString();}
 
   return year.concat(month, day, hour, minutes, seconds, series, rounds, exercises);
 }
 
+function saveRoutine(routineId) { 
+    const saveButton = document.querySelector('#finish-training button-normal#save');
+    saveButton.addEventListener('click', async () => {
+      // hacer un get de la rutina con el RoutineId       
+      const routineGet = await fetch(`/entrenamientos/${routineId}`);
+      const dataRoutineGet = await routineGet.json();
+      const routineString = createRoutineString(dataRoutineGet);
+
+      //Test
+      console.log('soy routineString : ', routineString)
+      
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ routineString })
+      }  
+      const routinePost = await fetch(`/entrenamientos/${routineId}/exportar`, options);
+      const dataRoutinePost = await routinePost.json();
+
+      const fileGet = await fetch(`/entrenamientos/${routineId}/exportar`);
+      const fileGetRes = await fileGet.json();
+      console.log('soy fileGetREs', fileGetRes)
+      
+      // BORRAR
+      
+      console.log('dataRoutinePost en routine.js',dataRoutinePost);
+      console.log('routineString en routine.js',routineString);     
+    })
+  }
+  
+  
+
+
+/*
+
+
+
+  const saveButton = document.querySelector('#finish-training button-normal#save');
+  saveButton.addEventListener('click', async () => {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ id: idRoutine})
+    }
+    const response = await fetch(`/entrenamientos/${idRoutine}/exportar`, options);
+    const dataResponse = await response.json();
+  });
+}
+
+*/
+
 /*
 module.exports = {
   createRoundSteps,
-  multiplyRounds
+  multiplyRounds,
+  createRoutineString
 }
 */

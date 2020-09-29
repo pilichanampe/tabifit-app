@@ -63,7 +63,7 @@ pauseNav.isClicked(pauseNav.nextButton, '#finish-training');
 /// Navigation Screen 8: Finish Training ///
 const finishNav = new Navigation('#finish-training', '#finish-training #save', '#finish-training #logout');
 
-finishNav.isClicked(finishNav.prevButton, '#archive-selection');
+
 finishNav.isClicked(finishNav.nextButton, '#welcome');
 
 /// Navigation Screen 9: Archive Selection ///

@@ -135,7 +135,7 @@ class ScreenApp extends HTMLElement {
           }
         } 
         countdownNumber.textContent = counter;
-    }, 200);
+    }, 100);
   }
   
 }

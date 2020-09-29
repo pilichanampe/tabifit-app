@@ -39,7 +39,8 @@ function getRoutine() {
     const routine = { 
       series: numberSeries,
       vueltas: numberRounds,
-      ejercicios: ejercicios
+      ejercicios: ejercicios,
+      pasosVuelta: createRoundSteps(numberSeries, ejercicios)
     };
 
     const options = {
@@ -57,14 +58,18 @@ function getRoutine() {
     screen.startTotalCountdown(allRounds, dataRoutine);
 
     // creating the Routine String
-    createRoutineString(dataRoutine);
+    console.log('dataRoutine en main.js',dataRoutine)
+    routineString = createRoutineString(dataRoutine)
+
+    console.log('routineString en main.js: ', routineString);
+    console.log('route ID en main.js',dataRoutine.id);
+    saveRoutine(dataRoutine.id)
 
   });  
 }
 
 getExercises();
 getRoutine();
-  
 
 
 

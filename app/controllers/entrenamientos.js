@@ -3,8 +3,8 @@ const knex = require('knex');
 // Maneja /ejercicios
 const router = express.Router();
 const db = require('../../database');
-const { createRoundSteps, multiplyRounds } = require('../public/js/routine');
-
+const path = require('path');
+const fs = require('fs');
 
 
 router.get('/', (req, res, next) => {
@@ -14,6 +14,9 @@ router.get('/', (req, res, next) => {
     res.send({ entrenamientos });
   });  
 });
+
+
+
 
 // Repensar esto, que no creo que esté bien...
 router.post('/', (req, res) => {
@@ -66,14 +69,97 @@ router.post('/', (req, res) => {
       vueltas: req.body.vueltas,
       series: req.body.series,
       ejercicios: req.body.ejercicios,
-      pasosVuelta: createRoundSteps(req.body.series, req.body.ejercicios)  });
+      pasosVuelta: req.body.pasosVuelta
+    });
       
   });  
 });
 
+/////////// PETICIONES FALTANTES ////////////
+
 router.post('/importar', (req, res) => {
   
-})
+});
+
+router.post('/:id/exportar', (req, res, next) => {
+  
+  fs.writeFileSync(`./${req.params.id}.fit`, req.body.routineString);  
+  //next();
+  //res.send('funciona el post exportar');
+  //después del send puedo eliminar el archivo
+  //acá puedo hacer el fs.unlinkSync... buscar
+  const routineFile = fs.readFileSync(`./${req.params.id}.fit`); 
+ 
+  res.set({
+    // Cómo se envía el contenido, si inline (no genera una descarga)
+    // o como un descargable.
+    "content-disposition": "attachment; filename=descarga.txt"
+  });
+  res.download(path.resolve(__dirname, `../../${req.params.id}.fit`), `./${req.params.id}.fit`);
+});
+
+/*
+router.get('/:id/exportar', (req, res) => {
+  
+  // Leer archivo utilizado fs.
+  const routineFile = fs.readFileSync(`./${req.params.id}.fit`); 
+ 
+  res.set({
+    // Cómo se envía el contenido, si inline (no genera una descarga)
+    // o como un descargable.
+    "content-disposition": "attachment; filename=descarga.txt"
+  });
+  res.download(path.resolve(__dirname, `./${req.params.id}.fit`), `./${req.params.id}.fit`);
+});
+*/
+
+
+// Para actualizar la duración total del entrenamiento
+router.put('/:id', (req, res) => {
+
+});
+
+router.get('/:id', (req, res, next) => {
+    db.select()
+    .from('entrenamientos').where('entrenamientos.id', req.params.id)
+    .then( entrenamientos => {
+      res.send({ 
+        id: entrenamientos[0].id,
+        fecha: entrenamientos[0].fecha,
+        vueltas: entrenamientos[0].vueltas,
+        series: entrenamientos[0].series,
+        ejercicios: entrenamientos[0].lista_ejercicios
+      });
+    });  
+});
+
+
+router.get('/:id/ejercicios', (req, res, next) => {
+    
+  db.select()
+  .from('entrenamientos').where('entrenamientos.id', req.params.id)
+  .then( entrenamientos => {
+    const exercisesList = entrenamientos[0].lista_ejercicios.split(',');
+    db.select()
+    .from('ejercicios')
+    .then( ejercicios => {
+      let exercises = [];
+      for(let i = 0; i < ejercicios.length; i++) {
+        for(let j = 0; j < exercisesList.length; j++ ) {       
+          if(ejercicios[i].id === parseInt(exercisesList[j])) {
+            exercises.push(ejercicios[i]);            
+          }  
+        }
+      }      
+      res.send({ 
+        id: entrenamientos[0].id,
+        ejercicios: exercises
+      });      
+    });    
+  });
+});
+
+
 
 
 module.exports = router;

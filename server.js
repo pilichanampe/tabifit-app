@@ -3,6 +3,7 @@ const cors = require('cors');
 const app = express();
 const morgan = require('morgan');
 const path = require('path');
+const fs = require('fs');
 
 const exercisesController = require(path.join(__dirname, './app/controllers/ejercicios'));
 const trainingsController = require(path.join(__dirname, './app/controllers/entrenamientos'));
