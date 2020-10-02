@@ -112,11 +112,35 @@ body {
 #archive-selection {
   display: none;
 }
+
+#archive-selection button-normal {
+  position: relative;
+}
+
+#archive-selection button-normal input {
+  position: absolute;  
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;  
+}
+
+
+
+
+
 /* SCREEN 10 */
 #training-verification {
   display: none;
 }
 
+#training-verification exercises-archive {
+ width: 320px;
+  
+}
 /*PRUEBA PARA VER CÓMO CAMBIAR COLOR DE UN CUSTOM ELEMENT
 :host(section) > #series-selection {
   background-color: rgb(173, 89, 89);

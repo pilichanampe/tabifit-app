@@ -70,9 +70,9 @@ finishNav.isClicked(finishNav.nextButton, '#welcome');
 const archiveNav = new Navigation('#archive-selection', '#archive-selection button-left', '#archive-selection button-right');
 
 archiveNav.isClicked(archiveNav.prevButton, '#welcome');
-archiveNav.isClicked(archiveNav.nextButton, '#preparation');
+archiveNav.isClicked(archiveNav.nextButton, '#training-verification');
 /// Navigation Screen 10: Training Verification ///
 const trainingNav = new Navigation('#training-verification', '#training-verification button-left', '#training-verification button-right');
 
-trainingNav.isClicked(trainingNav.prevButton, '#welcome');
+trainingNav.isClicked(trainingNav.prevButton, '#archive-selection');
 trainingNav.isClicked(trainingNav.nextButton, '#preparation');

@@ -103,7 +103,12 @@
       <span slot="keyword">sesión</span>
       <span slot="end">a repetir.</span>
     </title-special>
-    <button-normal>abrir desde archivo</button-normal>
+    <form action="/entrenamientos/importar" method="post" enctype="multipart/form-data">
+      <button-normal>      
+        <input type="file" name='tabifit-file' onchange="createRoutineFromFile(this)"/>
+        abrir desde archivo          
+      </button-normal>      
+    </form>
     <buttons-container>
       <button-left></button-left>
       <button-right></button-right>
@@ -117,9 +122,19 @@
       <span slot="keyword">sesión</span>
       <span slot="end">a repetir.</span>
     </title-special>
-    <activity-info>Series</activity-info>
-    <activity-info>Vueltas</activity-info>
-    <exercises-archive>Ejercicios</exercises-archive>
+    <activity-info>
+      <span slot="title">Series</span>
+      <span class="series" slot="number">0</span>
+
+    </activity-info>
+    <activity-info>
+      <span slot="title">Vueltas</span>
+      <span class="rounds" slot="number">0</span>
+    </activity-info>
+    <exercises-archive>
+      <span slot="title">Ejercicios</span>
+      <p class="exercises" slot="exercises"></p>
+    </exercises-archive>
     <buttons-container>
       <button-left></button-left>
       <button-right></button-right>
@@ -204,8 +219,8 @@
   </template>
 
   <template id="activity-info">
-    <h1><slot>Keyword</slot></h1>
-    <div>0</div>
+    <h1><slot name="title">Keyword</slot></h1>
+    <div><slot name="number">0</slot></div>
     <link rel="stylesheet" href="../public/components/activity-info/activity-info.css">
   </template>
 
@@ -223,8 +238,8 @@
   </template>
 
   <template id="exercises-archive">
-    <h1><slot>Title</slot></h1>
-    <p>Element, Element, Element, Element, Element, Element</p> 
+    <h1><slot name="title">Title</slot></h1>
+    <p><slot name="exercises"></slot></p> 
     <link rel="stylesheet" href="../public/components/exercises-archive/exercises-archive.css">
   </template>
   

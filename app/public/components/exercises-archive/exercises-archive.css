@@ -12,6 +12,9 @@ p {
   margin: 0;
   font-size: 1rem;
   color: var(--black);
+  width: 300px;
+  word-wrap: break-word;
+  white-space: normal;
 }
 
 h1 {
@@ -22,3 +25,4 @@ h1 {
   font-weight: 400;
   letter-spacing: -3px;
 }
+

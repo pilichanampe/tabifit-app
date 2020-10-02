@@ -24,7 +24,7 @@ class ScreenApp extends HTMLElement {
   
   startTotalCountdown(stepsList, dataRoutine) {
     this.displayScreen('#preparation');
-    console.log('stepsList: ', stepsList);
+    //console.log('stepsList: ', stepsList);
     const activityScreen = document.querySelector('#activity');
     const pauseScreen = document.querySelector('#pause');
     const prepScreen = document.querySelector('#preparation');
@@ -85,7 +85,7 @@ class ScreenApp extends HTMLElement {
               if(counterSeries > dataRoutine.series) {
                 counterSeries = 1;
                 counterRound++;
-                console.log("counterSeries cuando es mayor a series, se convierte en: ", counterSeries);
+                //console.log("counterSeries cuando es mayor a series, se convierte en: ", counterSeries);
                 
               }
               numSeries.textContent = counterSeries;
@@ -100,7 +100,7 @@ class ScreenApp extends HTMLElement {
               for(exercise of exercisesList) {
                 if(step.datos.id == exercise.dataset.id) {
                   titleNormal.textContent = exercise.dataset.abrev;
-                  console.log(exercise.dataset.abrev);
+                  //console.log(exercise.dataset.abrev);
                 }
               }
             }
@@ -135,7 +135,7 @@ class ScreenApp extends HTMLElement {
           }
         } 
         countdownNumber.textContent = counter;
-    }, 100);
+    }, 1);
   }
   
 }

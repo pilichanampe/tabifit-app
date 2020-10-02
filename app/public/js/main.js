@@ -1,5 +1,4 @@
 //const { multiplyRounds, startRoutine } = require("./routine");
-
 ///// EXERCISES /////
 function getExercises() {
   const exercisesList = document.querySelector('#exercises-selection exercises-list');
@@ -7,22 +6,18 @@ function getExercises() {
   fetch('/ejercicios')
   .then(res => res.json())
   .then(resExercises => {
-    console.log(resExercises);
     for(exercise of resExercises.ejercicios) {
       const exerciseItem = document.createElement('exercise-item');
       exerciseItem.textContent = exercise.nombre;
       exerciseItem.dataset.id = exercise.id;
       exerciseItem.dataset.abrev = exercise.abreviatura;
       exercisesList.appendChild(exerciseItem);
-    }
-    
-    
+    }    
   });    
 }
 
 function getRoutine() {
-  const button = document.querySelector('#exercises-selection button-right');  
-
+  const button = document.querySelector('#exercises-selection button-right');
   button.addEventListener('click', async () => {
     const numberSeries = document.querySelector('#series-selection counter-choice').counter; 
     const numberRounds = document.querySelector('#rounds-selection counter-choice').counter;
@@ -42,7 +37,7 @@ function getRoutine() {
       ejercicios: ejercicios,
       pasosVuelta: createRoundSteps(numberSeries, ejercicios)
     };
-
+//     console.log('rutina que mando en getRoutine', routine)
     const options = {
       method: 'POST',
       headers: {
@@ -56,20 +51,27 @@ function getRoutine() {
     const buttonNext = document.querySelector('#exercises-selection button-right');
     const allRounds = multiplyRounds(dataRoutine.vueltas, dataRoutine.pasosVuelta);    
     screen.startTotalCountdown(allRounds, dataRoutine);
+ 
+    // creating the Routine String    
+    routineString = createRoutineString(dataRoutine);
 
-    // creating the Routine String
-    console.log('dataRoutine en main.js',dataRoutine)
-    routineString = createRoutineString(dataRoutine)
-
-    console.log('routineString en main.js: ', routineString);
-    console.log('route ID en main.js',dataRoutine.id);
-    saveRoutine(dataRoutine.id)
-
+    //console.log('dataRoutine: ', dataRoutine);
+    //console.log('route ID en main.js',dataRoutine.id);
+    saveRoutine(dataRoutine.id);
+    updateDuration(allRounds, dataRoutine.id);
   });  
 }
-
+/*
+openRoutineFile() {
+  const button = document.querySelector('#archive-selection button-normal input');
+  button.addEventListener('click', async () => {
+    //const response = await fetch('/entrenamientos/importar')
+  })
+}*/
 getExercises();
 getRoutine();
+
+
 
 
 
