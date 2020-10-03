@@ -8,6 +8,7 @@ const fs = require('fs');
 const multer = require('multer');
 const app = express();
 
+// Quedó comentado este código, ya que se resolvió no resolver la subida del archivo con Multer desde Node, ya que generaba algunos inconvenientes. En cambio, se resolvió utilizando la API FileReader desde el frontend.
 /*let storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, './uploaded-files');
@@ -24,7 +25,10 @@ router.get('/', (req, res, next) => {
   db.select()
   .from('entrenamientos')
   .then( entrenamientos => {
-    res.send({ entrenamientos });
+    if(!entrenamientos.length) {
+      res.status(204).end();
+    }
+    res.status(200).send({ entrenamientos });
   });  
 });
 
@@ -33,9 +37,7 @@ router.get('/', (req, res, next) => {
 
 // Repensar esto, que no creo que esté bien...
 router.post('/', (req, res) => {
-  //Intento de mostrar el error, pero no funciona
-  if(req.body.ejercicios.length === 0) {
-    
+  if(!req.body.ejercicios) {    
     res.status(400).send({
       error: {
         tipo: 'falta_parametro',
@@ -44,6 +46,28 @@ router.post('/', (req, res) => {
     });    
     return;
   }
+
+  
+  if(!req.body.series) {    
+    res.status(400).send({
+      error: {
+        tipo: 'falta_parametro',
+        detalle: 'series'
+      }
+    });    
+    return;
+  }
+    
+  if(!req.body.vueltas) {    
+    res.status(400).send({
+      error: {
+        tipo: 'falta_parametro',
+        detalle: 'vueltas'
+      }
+    });    
+    return; 
+  }  
+  
   db('entrenamientos')
   .insert({
     // tengo que construir una fecha utilizando los métodos del objeto. Si no, me devuelve el objeto completo
@@ -56,7 +80,7 @@ router.post('/', (req, res) => {
    .returning(["id", "fecha", "vuelta", "series", "ejercicios"])
    //Acá armo las respuestas como quiero
   .then(data => {
-    //Acá tengo que acomodar la respuesta como yo quiero... pasosVuelta, etc...    
+    //Acá tengo que acomodar la respuesta como yo quiero... pasosVuelta, etc...
     res.status(201).send({ 
       id: data[0],
       fecha: new Date().toJSON(),     
@@ -64,8 +88,7 @@ router.post('/', (req, res) => {
       series: req.body.series,
       ejercicios: req.body.ejercicios,
       pasosVuelta: req.body.pasosVuelta
-    });
-      
+    });      
   });  
 });
 
@@ -77,7 +100,7 @@ router.post('/', (req, res) => {
 });*/
 
 router.post('/importar', (req, res) => {
-  //console.log('rutina 1 vuelta: ', req.body);
+  console.log('req completo ', req.body);  
   db('entrenamientos')
   .insert({
     // tengo que construir una fecha utilizando los métodos del objeto. Si no, me devuelve el objeto completo
@@ -105,10 +128,24 @@ router.post('/importar', (req, res) => {
 
 
 router.post('/:id/exportar', (req, res, next) => {
-  //console.log('entre al post');  
+  //console.log('entre al post');
+  db('entrenamientos')
+  .select()
+  .from('entrenamientos').where('id', req.params.id)
+  .then(entrenamiento => {    
+    if(entrenamiento.length === 0) {
+      console.log('el entrenamiento no existe')
+      res.status(404).send({
+        error: {
+          tipo: 'entrenamiento_no_existe'
+        }
+      });
+    } else {
+      fs.writeFileSync(`./${req.params.id}.fit`, `${req.body.routineString}`);
+      res.status(201).send('Created');
+    }
+  })
   
-  fs.writeFileSync(`./${req.params.id}.fit`, `${req.body.routineString}`);
-  res.sendStatus(200)
   //fs.writeFileSync(`./${req.params.id}.fit`, `["${req.body.routineString}"]`);
   //res.download(path.resolve(__dirname, `../../${req.params.id}.fit`), `./${req.params.id}.fit`);
 
@@ -135,15 +172,22 @@ router.get('/:id', (req, res, next) => {
   db.select()
   .from('entrenamientos').where('entrenamientos.id', req.params.id)
   .then( entrenamientos => {
-    res.send({ 
-      id: entrenamientos[0].id,
-      fecha: entrenamientos[0].fecha,
-      vueltas: entrenamientos[0].vueltas,
-      series: entrenamientos[0].series,
-      ejercicios: entrenamientos[0].lista_ejercicios
-    });
-  });
-   
+    if(entrenamientos.length === 0) {
+      res.status(404).send({
+        error: {
+          tipo: 'entrenamiento_no_existe'
+        }
+      });
+    } else {
+      res.status(200).send({ 
+        id: entrenamientos[0].id,
+        fecha: entrenamientos[0].fecha,
+        vueltas: entrenamientos[0].vueltas,
+        series: entrenamientos[0].series,
+        ejercicios: entrenamientos[0].lista_ejercicios
+      });
+    }
+  });   
 });
 
 

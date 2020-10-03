@@ -127,86 +127,101 @@ async function updateDuration(stepsList, routineId) {
 }
 
 function createRoutineFromFile(input) {
-  
-  let file = input.files[0];  
-  const promise = new Promise(resolve => {    
-    let reader = new FileReader();
-    reader.onload = function() {
-      //console.log('archivo leido: ', reader.result);
-      resolve(reader.result);      
-    }
-    reader.readAsText(file);
-
-  });
-
-  promise.then(string => {
-    //self.routineInfo = createRoutineFromString(string);
-    const routineInfo = createRoutineFromString(string);
-    //console.log('routineINfo', routineInfo)
-    const buttonArchive = document.querySelector('#archive-selection button-right');
-    const buttonTraining = document.querySelector('#training-verification button-right');
-
-    buttonArchive.addEventListener('click', async () => {
-      const seriesElement = document.querySelector('#training-verification .series');
-      const roundsElement = document.querySelector('#training-verification .rounds');
-      const exercisesElement = document.querySelector('#training-verification .exercises');
-      
-      seriesElement.textContent = routineInfo.series;
-      roundsElement.textContent = routineInfo.vueltas;
-
-     
-
-      const responseExercises = await fetch('/ejercicios');
-      const dataExercises = await responseExercises.json();
-      //console.log('dataExercises: ', dataExercises.ejercicios)
-
-      const names = [];
-      for(let i = 0; i < dataExercises.ejercicios.length; i++) {
-        for(let j = 0; j < routineInfo.ejercicios.length; j++) {
-          if(dataExercises.ejercicios[i].id === routineInfo.ejercicios[j]) {
-            
-              names.push(' '.concat(dataExercises.ejercicios[i].nombre));  
-          }      
-        }        
-      }
-
-      exercisesElement.textContent = names;
-
-      const routine = {
-        series: routineInfo.series,
-        vueltas: routineInfo.vueltas,
-        ejercicios: routineInfo.ejercicios,
-        pasosVuelta: createRoundSteps(routineInfo.series, routineInfo.ejercicios)
-      }
-      //console.log('routine que mando al back', routine);
-
-      buttonTraining.addEventListener('click', async () => {
-        const options = {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(routine)
+  const message = document.querySelector('#archive-selection .message');
+  const buttonNext = document.querySelector('#archive-selection button-right');
+  const archiveNav = new Navigation('#archive-selection', '#archive-selection button-left', '#archive-selection button-right');
+  archiveNav.isClicked(archiveNav.prevButton, '#welcome');
+  let file = input.files[0];
+  if(!file.name.endsWith('.fit')) {
+    console.log(
+      `{
+        error: {
+          tipo: 'formato_invalido'          
         }
+      }`);      
+    buttonNext.changeColor('var(--light-grey)');     
+    message.style.visibility = 'normal';      
+    message.textContent = '¡Oh, no! El archivo debe ser formato .fit';
+    return;
+  } else {  
+    console.log('formato_valido');
+    archiveNav.isClicked(archiveNav.nextButton, '#training-verification');  
+    message.textContent = `Elegiste el archivo ${file.name}.`
+    buttonNext.changeColor('var(--middle-blue)');
+    const promise = new Promise(resolve => {    
+      let reader = new FileReader();
+      reader.onload = function() {
+        //console.log('archivo leido: ', reader.result);
+        resolve(reader.result);      
+      }
+      reader.readAsText(file);
   
-        const response = await fetch('/entrenamientos/importar', options);
-        const dataRoutine = await response.json();
-        const buttonNext = document.querySelector('#training-verification button-right');
-        const allRounds = multiplyRounds(dataRoutine.vueltas, dataRoutine.pasosVuelta); 
-        const screen = document.querySelector('#preparation');   
-        screen.startTotalCountdown(allRounds, dataRoutine);    
+    });
+    promise.then(string => {
+      //self.routineInfo = createRoutineFromString(string);
+      const routineInfo = createRoutineFromString(string);
+      //console.log('routineINfo', routineInfo)
+      const buttonArchive = document.querySelector('#archive-selection button-right');
+      const buttonTraining = document.querySelector('#training-verification button-right');
+
+      buttonArchive.addEventListener('click', async () => {
+        const seriesElement = document.querySelector('#training-verification .series');
+        const roundsElement = document.querySelector('#training-verification .rounds');
+        const exercisesElement = document.querySelector('#training-verification .exercises');
+        
+        seriesElement.textContent = routineInfo.series;
+        roundsElement.textContent = routineInfo.vueltas;
+
+      
+
+        const responseExercises = await fetch('/ejercicios');
+        const dataExercises = await responseExercises.json();
+        //console.log('dataExercises: ', dataExercises.ejercicios)
+
+        const names = [];
+        for(let i = 0; i < dataExercises.ejercicios.length; i++) {
+          for(let j = 0; j < routineInfo.ejercicios.length; j++) {
+            if(dataExercises.ejercicios[i].id === routineInfo.ejercicios[j]) {
+              
+                names.push(' '.concat(dataExercises.ejercicios[i].nombre));  
+            }      
+          }        
+        }
+
+        exercisesElement.textContent = names;
+
+        const routine = {
+          series: routineInfo.series,
+          vueltas: routineInfo.vueltas,
+          ejercicios: routineInfo.ejercicios,
+          pasosVuelta: createRoundSteps(routineInfo.series, routineInfo.ejercicios)
+        }
+        //console.log('routine que mando al back', routine);
+
+        buttonTraining.addEventListener('click', async () => {
+          const options = {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(routine)
+          }
     
-        //console.log('dataRoutine: ', dataRoutine);
-        //console.log('route ID en main.js',dataRoutine.id);
-        saveRoutine(dataRoutine.id);
-        updateDuration(allRounds, dataRoutine.id);
-      });  
+          const response = await fetch('/entrenamientos/importar', options);
+          const dataRoutine = await response.json();
+          const buttonNext = document.querySelector('#training-verification button-right');
+          const allRounds = multiplyRounds(dataRoutine.vueltas, dataRoutine.pasosVuelta); 
+          const screen = document.querySelector('#preparation');   
+          screen.startTotalCountdown(allRounds, dataRoutine);    
+      
+          //console.log('dataRoutine: ', dataRoutine);
+          //console.log('route ID en main.js',dataRoutine.id);
+          saveRoutine(dataRoutine.id);
+          updateDuration(allRounds, dataRoutine.id);
+        });  
+      })    
     })
-
-    
-  })
-
-  
+  }  
 }
 // PROBANDO FUNCIÓN DE INTERNET
  /*

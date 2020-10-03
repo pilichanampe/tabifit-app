@@ -61,13 +61,19 @@ function getRoutine() {
     updateDuration(allRounds, dataRoutine.id);
   });  
 }
-/*
-openRoutineFile() {
-  const button = document.querySelector('#archive-selection button-normal input');
+
+function redirectToHome(selector) {
+  const button = document.querySelector(selector);
   button.addEventListener('click', async () => {
-    //const response = await fetch('/entrenamientos/importar')
-  })
-}*/
+    history.go(0);
+  });
+
+  
+}
+
+redirectToHome('#series-selection button-left');
+redirectToHome('#archive-selection button-left');
+redirectToHome('#finish-training #logout');
 getExercises();
 getRoutine();
 

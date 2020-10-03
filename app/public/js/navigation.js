@@ -63,14 +63,14 @@ pauseNav.isClicked(pauseNav.nextButton, '#finish-training');
 /// Navigation Screen 8: Finish Training ///
 const finishNav = new Navigation('#finish-training', '#finish-training #save', '#finish-training #logout');
 
-
 finishNav.isClicked(finishNav.nextButton, '#welcome');
 
 /// Navigation Screen 9: Archive Selection ///
 const archiveNav = new Navigation('#archive-selection', '#archive-selection button-left', '#archive-selection button-right');
 
 archiveNav.isClicked(archiveNav.prevButton, '#welcome');
-archiveNav.isClicked(archiveNav.nextButton, '#training-verification');
+//archiveNav.isClicked(archiveNav.nextButton, '#training-verification');
+
 /// Navigation Screen 10: Training Verification ///
 const trainingNav = new Navigation('#training-verification', '#training-verification button-left', '#training-verification button-right');
 

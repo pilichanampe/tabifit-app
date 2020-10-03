@@ -1,46 +1,39 @@
 const express = require("express");
 const knex = require('knex');
 
-// Maneja /ejercicios
 const router = express.Router();
 const db = require('../../database');
-
-// La idea de tener varios manejadores es para separar responsabilidades.
-// No usar varios manejadores que hagan la misma cosa. Se puede resolver en uno solo.
 
 router.get('/', (req, res, next) => {
   db.select()
   .from('ejercicios')
   .then( ejercicios => {
+    if(!ejercicios.length) {
+      res.status(204).end();
+    }
     res.status(200).send({ ejercicios });
   });  
 });
 
-
-// Los siguientes metodos son solamente para poder editar la DB sin tener que usar algo externo.
-// Desde insomnia puede hacerse un API call a /ejercicios para agregar o borrar ejercicios.
-
+//POST adicional a los requeridos en el trabajo, creado para poder agregar más ejercicios a través de Insomnia o Postman en la base de datos.
 router.post('/', (req, res, next) => {
-
-// Para agregar multiples opciones al post, es necesario diferenciar que queremos hacer.
-// Para eso, podemos agregar una propiedad llamada operacion que se usa para elegir la funcion a realizar...
-// Esta nueva propiedad deberia ser agregada al body del API
-//
-// if (req.body.operacion == "add") {funcionParaAgregar(req.body.nombre, req.body.abreviatura)}
-// else if (req.body.operacion == "modificar") {funcionParaAgregar(req.body.id, req.body.nombre, req.body.abreviatura)}
-//
-  
   // Manejo de errores por falta de campos requeridos.
   if (!req.body.nombre) {
-    res.status(400).send({error: "Falta la propiedad nombre en el body del call"})
+    res.status(400).send({ error: {
+      tipo: "falta_parametro",
+      detalle: "nombre"
+    }});
     return;
   }
   if (!req.body.abreviatura) {
-    res.status(400).send({error: "Falta la propiedad abreviatura en el body del call"})
-    return;
+    res.status(400).send({ error: {
+      tipo: "falta_parametro",
+      detalle: "abreviatura"
+    }});
+    return
   }
   
-  // Agregar a la DB el nuevo ejercicio
+  // Agrego a la base de datos el nuevo ejercicio
   db('ejercicios')
   .insert({
     nombre: req.body.nombre,
@@ -51,10 +44,14 @@ router.post('/', (req, res, next) => {
   })
 })
 
+// DELETE agregado por si se quiere eliminar algún ejercicio que se haya creado y no se quiera que esté.
 router.delete("/", (req, res, next) => {
  // Manejo de errores por falta de campos requeridos.
  if (!req.body.nombre) {
-  res.status(400).send({error: "Falta la propiedad nombre en el body del call"})
+  res.status(400).send({ error: {
+    tipo: "falta_parametro",
+    detalle: "nombre"
+  }});
   return;
   }
   
@@ -65,7 +62,4 @@ router.delete("/", (req, res, next) => {
       res.status(204).end();
     });
 });
-
-
-
 module.exports = router;

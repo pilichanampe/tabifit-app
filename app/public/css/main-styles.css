@@ -30,7 +30,8 @@ body {
   --dark-blue: #0B5D7C;
   --dark2-blue: #07759c;
   --middle-blue: #4AB4DC;
-  --middle2-blue: #00C9FF;  
+  --middle2-blue: #00C9FF;
+  --light-grey: rgb(179, 179, 179);  
 }
 
 #welcome img, #finish-training img {
@@ -113,8 +114,18 @@ body {
   display: none;
 }
 
+#archive-selection .message {
+  padding: 0;
+  margin: 0;
+  font-size: 1rem;
+  color: var(--black);
+  word-wrap: break-word;
+  white-space: normal;
+}
+
 #archive-selection button-normal {
   position: relative;
+  margin-top: 100px;
 }
 
 #archive-selection button-normal input {
@@ -127,10 +138,6 @@ body {
   height: 100%;
   opacity: 0;  
 }
-
-
-
-
 
 /* SCREEN 10 */
 #training-verification {
