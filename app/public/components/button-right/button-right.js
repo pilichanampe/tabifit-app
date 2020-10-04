@@ -1,7 +1,6 @@
 class ButtonRight extends HTMLElement {
   constructor() {
     super();
-
     loadTemplate("#button-right", this);
   }; 
 
@@ -12,10 +11,8 @@ class ButtonRight extends HTMLElement {
   }
 
   changeColor(color) {
-    this.shadowRoot.querySelector('button')
-    .style.backgroundColor = color;
+    this.shadowRoot.querySelector('button').style.backgroundColor = color;
   }
 }
-
 
 customElements.define("button-right", ButtonRight);

@@ -1,6 +1,5 @@
 const express = require("express");
 const knex = require('knex');
-// Maneja /ejercicios
 const router = express.Router();
 const db = require('../../database');
 const path = require('path');
@@ -8,7 +7,7 @@ const fs = require('fs');
 const multer = require('multer');
 const app = express();
 
-// Quedó comentado este código, ya que se resolvió no resolver la subida del archivo con Multer desde Node, ya que generaba algunos inconvenientes. En cambio, se resolvió utilizando la API FileReader desde el frontend.
+// Quedó comentado este código, ya que se resolvió no generar la subida del archivo con Multer desde Node, ya que generaba algunos inconvenientes. En cambio, se utilizó la API FileReader desde el frontend.
 /*let storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, './uploaded-files');
@@ -32,10 +31,6 @@ router.get('/', (req, res, next) => {
   });  
 });
 
-
-
-
-// Repensar esto, que no creo que esté bien...
 router.post('/', (req, res) => {
   if(!req.body.ejercicios) {    
     res.status(400).send({
@@ -47,7 +42,6 @@ router.post('/', (req, res) => {
     return;
   }
 
-  
   if(!req.body.series) {    
     res.status(400).send({
       error: {
@@ -70,7 +64,6 @@ router.post('/', (req, res) => {
   
   db('entrenamientos')
   .insert({
-    // tengo que construir una fecha utilizando los métodos del objeto. Si no, me devuelve el objeto completo
     fecha: new Date().toJSON(),     
     vueltas: req.body.vueltas,
     series: req.body.series,
@@ -78,10 +71,8 @@ router.post('/', (req, res) => {
     lista_ejercicios: req.body.ejercicios      
    })
    .returning(["id", "fecha", "vuelta", "series", "ejercicios"])
-   //Acá armo las respuestas como quiero
-  .then(data => {
-    //Acá tengo que acomodar la respuesta como yo quiero... pasosVuelta, etc...
-    res.status(201).send({ 
+   .then(data => {
+      res.status(201).send({ 
       id: data[0],
       fecha: new Date().toJSON(),     
       vueltas: req.body.vueltas,
@@ -91,8 +82,6 @@ router.post('/', (req, res) => {
     });      
   });  
 });
-
-/////////// PETICIONES FALTANTES ////////////
 
 /*router.post('/importar', upload.single('tabifit-file'), (req, res) => {
   console.log(`Storage location is ${req.hostname}/${req.file.path}`);
@@ -109,18 +98,14 @@ router.post('/importar', (req, res) => {
   } else {  
     db('entrenamientos')
     .insert({
-      // tengo que construir una fecha utilizando los métodos del objeto. Si no, me devuelve el objeto completo
       fecha: new Date().toJSON(),     
       vueltas: req.body.vueltas,
       series: req.body.series,
-      // por qué me devuelve una string y no una lista??? Porque la base de datos devuelve string, está bien que sea así.
       lista_ejercicios: req.body.ejercicios      
     })
     .returning(["id", "fecha", "vuelta", "series", "ejercicios"])
-    //Acá armo las respuestas como quiero
     .then(data => {
-      //Acá tengo que acomodar la respuesta como yo quiero... pasosVuelta, etc...    
-      res.status(201).send({ 
+        res.status(201).send({ 
         id: data[0],
         fecha: new Date().toJSON(),     
         vueltas: req.body.vueltas,
@@ -132,9 +117,7 @@ router.post('/importar', (req, res) => {
   } 
 });
 
-
 router.post('/:id/exportar', (req, res, next) => {
-  //console.log('entre al post');
   db('entrenamientos')
   .select()
   .from('entrenamientos').where('id', req.params.id)
@@ -150,29 +133,8 @@ router.post('/:id/exportar', (req, res, next) => {
       fs.writeFileSync(`./${req.params.id}.fit`, `${req.body.routineString}`);
       res.status(201).send('Created');
     }
-  })
-  
-  //fs.writeFileSync(`./${req.params.id}.fit`, `["${req.body.routineString}"]`);
-  //res.download(path.resolve(__dirname, `../../${req.params.id}.fit`), `./${req.params.id}.fit`);
-
-});
-
-  /*
-
-  //next();
-  //res.send('funciona el post exportar');
-  //después del send puedo eliminar el archivo
-  //acá puedo hacer el fs.unlinkSync... buscar
-  //const routineFile = fs.readFileSync(path.resolve(__dirname, `../../${req.params.id}.fit`), `./${req.params.id}.fit`); 
-  res.set({    
-    //"content-type": "application/octet-stream",
-    "content-type": "text/plain",
-    "content-disposition": "attachment; filename=descarga.txt"
   });
-  res.download(path.resolve(__dirname, `../../${req.params.id}.fit`), `./${req.params.id}.fit`);
-  //res.download();
-  //res.send(routineFile);
-*/
+});
 
 router.get('/:id', (req, res, next) => {
   db.select()
@@ -244,9 +206,6 @@ router.put('/:id', (req, res) => {
   }  
 });
 
-
-
-
 router.get('/:id/ejercicios', (req, res, next) => {
   db.select()
   .from('entrenamientos').where('entrenamientos.id', req.params.id)
@@ -279,22 +238,4 @@ router.get('/:id/ejercicios', (req, res, next) => {
   });
 });
 
-
-
-
 module.exports = router;
-
-//////////////// REVISAR SI HACE FALTA ESTA FUNCIÓN EN OTRO LADO, O DEBO BORRARLA DIRECTAMENTE /////////
-/*
-function stepsInPairs() {
-  const steps = [];
-  for(let i = 0; i < pasosVuelta.length; i++) {
-      
-      if(pasosVuelta.indexOf(pasosVuelta[i]) % 2 === 0) {
-          steps.push([pasosVuelta[i], pasosVuelta[i + 1]]);
-      }
-      
-  }
-  return steps;
-}
-*/

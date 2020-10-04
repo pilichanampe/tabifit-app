@@ -16,8 +16,7 @@
   height: 270px;
   position: absolute;
   /*animation: 1s rotate infinite;*/
-  transform: rotate(-45deg);
-  
+  transform: rotate(-45deg);  
 }
 
 .number {

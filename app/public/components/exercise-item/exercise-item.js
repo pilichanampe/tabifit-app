@@ -1,7 +1,6 @@
 class ExerciseItem extends HTMLElement {
   constructor() {
     super();
-
     loadTemplate("#exercise-item", this);
   };
  

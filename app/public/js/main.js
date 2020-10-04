@@ -1,4 +1,3 @@
-//const { multiplyRounds, startRoutine } = require("./routine");
 ///// EXERCISES /////
 function getExercises() {
   const exercisesList = document.querySelector('#exercises-selection exercises-list');
@@ -18,47 +17,53 @@ function getExercises() {
 
 function getRoutine() {
   const button = document.querySelector('#exercises-selection button-right');
+  const exercisesNav = new Navigation('#exercises-selection', '#exercises-selection button-left', '#exercises-selection button-right');
+  const ejercicios = [];
+  const exerciseList = document.querySelector('#exercises-selection exercises-list'); 
+  
   button.addEventListener('click', async () => {
     const numberSeries = document.querySelector('#series-selection counter-choice').counter; 
     const numberRounds = document.querySelector('#rounds-selection counter-choice').counter;
-    const exerciseList = document.querySelector('#exercises-selection exercises-list');
     const screen = document.querySelector('#preparation');
-    
-    const ejercicios = [];
+    const message = document.querySelector('#exercises-selection .message');    
     
     for(exercise of exerciseList.children) {
-      if(exercise.isChecked()) {
+      if(exercise.isChecked()) {       
         ejercicios.push(parseInt(exercise.dataset.id));
+      }      
+    }
+
+    if(ejercicios.length === 0) {      
+      return;    
+    } else {   
+      exercisesNav.isClicked(exercisesNav.nextButton, '#preparation');
+      const routine = { 
+        series: numberSeries,
+        vueltas: numberRounds,
+        ejercicios: ejercicios,
+        pasosVuelta: createRoundSteps(numberSeries, ejercicios)
+      };
+
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(routine)
       }
-    }
-    const routine = { 
-      series: numberSeries,
-      vueltas: numberRounds,
-      ejercicios: ejercicios,
-      pasosVuelta: createRoundSteps(numberSeries, ejercicios)
-    };
-//     console.log('rutina que mando en getRoutine', routine)
-    const options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(routine)
-    }
 
-    const response = await fetch('/entrenamientos', options);
-    const dataRoutine = await response.json();
-    const buttonNext = document.querySelector('#exercises-selection button-right');
-    const allRounds = multiplyRounds(dataRoutine.vueltas, dataRoutine.pasosVuelta);    
-    screen.startTotalCountdown(allRounds, dataRoutine);
- 
-    // creating the Routine String    
-    routineString = createRoutineString(dataRoutine);
+      const response = await fetch('/entrenamientos', options);
+      const dataRoutine = await response.json();
+      const buttonNext = document.querySelector('#exercises-selection button-right');
+      const allRounds = multiplyRounds(dataRoutine.vueltas, dataRoutine.pasosVuelta);    
+      screen.startTotalCountdown(allRounds, dataRoutine);
+  
+      // creating the Routine String    
+      routineString = createRoutineString(dataRoutine);
 
-    //console.log('dataRoutine: ', dataRoutine);
-    //console.log('route ID en main.js',dataRoutine.id);
-    saveRoutine(dataRoutine.id);
-    updateDuration(allRounds, dataRoutine.id);
+      saveRoutine(dataRoutine.id);
+      updateDuration(allRounds, dataRoutine.id);
+    }
   });  
 }
 
@@ -66,9 +71,7 @@ function redirectToHome(selector) {
   const button = document.querySelector(selector);
   button.addEventListener('click', async () => {
     history.go(0);
-  });
-
-  
+  });  
 }
 
 redirectToHome('#series-selection button-left');

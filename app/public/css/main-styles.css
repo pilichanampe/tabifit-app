@@ -18,7 +18,6 @@ html, body {
 body {
   display: flex;
   flex-wrap: wrap;
- /* flex-direction: column;    */
   justify-content: center;
   align-items: center;
   background: #fafafa;
@@ -40,12 +39,14 @@ body {
   width: 375px;
   margin-bottom: 25px;
 }
+
 /* SCREEN 1 */
 #welcome {  
   background-color: var(--light-blue);
   justify-content: flex-end;
   padding-bottom: 100px;
 }
+
 /* SCREEN 2 */
 #series-selection {
   display: none;
@@ -61,6 +62,9 @@ body {
   display: none;  
 }
 
+#exercises-selection .message {
+  color: var(--black);
+}
 
 /* SCREEN 5 - PREPARATION */
 #preparation {
@@ -145,14 +149,8 @@ body {
 }
 
 #training-verification exercises-archive {
- width: 320px;
-  
+ width: 320px;  
 }
-/*PRUEBA PARA VER CÓMO CAMBIAR COLOR DE UN CUSTOM ELEMENT
-:host(section) > #series-selection {
-  background-color: rgb(173, 89, 89);
-}
-*/
 
 /******** Styling the special-title for each case ********/
 
@@ -160,7 +158,6 @@ body {
   font-size: 6.9rem;
   letter-spacing: 4px;
 }
-
 
 #rounds-selection span[slot="keyword"] {
   font-size: 6.9rem;

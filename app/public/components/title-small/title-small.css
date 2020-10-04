@@ -8,8 +8,6 @@ h1 {
   letter-spacing: -4px;
   font-weight: 400;
   margin: 0;
-  
-
   /*No estoy conforme con esta solución, pero no sé
   cómo poner al componente countdown-spinning en el centro centro
   de la pantalla... */

@@ -1,7 +1,6 @@
 class TitleSmall extends HTMLElement {
   constructor() {
     super();
-
     loadTemplate("#title-small", this);
   }; 
 }

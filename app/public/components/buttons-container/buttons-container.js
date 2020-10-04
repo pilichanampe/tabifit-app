@@ -1,7 +1,6 @@
 class ButtonsContainer extends HTMLElement {
   constructor() {
     super();
-
     loadTemplate("#buttons-container", this);
   }; 
 }

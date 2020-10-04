@@ -1,13 +1,8 @@
 class ScreenApp extends HTMLElement {
   constructor() {
     super();
-
     loadTemplate("#screen-app", this);
   };
-
-  static get observedAttributes() {
-    return [ "duration" ];
-  }
 
   displayScreen(screenId) {
     const allScreens = document.querySelectorAll('screen-app');
@@ -18,13 +13,11 @@ class ScreenApp extends HTMLElement {
 
   leyendoScreen() {
     const screen = document.querySelector('screen-app');
-    //const countdownNumber = countdownElement.shadowRoot.querySelector('.number');
     console.log('soy una screen', screen);
   }
   
   startTotalCountdown(stepsList, dataRoutine) {
     this.displayScreen('#preparation');
-    //console.log('stepsList: ', stepsList);
     const activityScreen = document.querySelector('#activity');
     const pauseScreen = document.querySelector('#pause');
     const prepScreen = document.querySelector('#preparation');
@@ -63,17 +56,16 @@ class ScreenApp extends HTMLElement {
             pauseScreen.style.backgroundColor = 'var(--middle2-blue)';
             countdownCircle.style.borderLeftColor = 'var(--white)';
             countdownCircle.style.borderTopColor = 'var(--white)';
-            countdownNumber.style.color = 'var(--white)';
-            
+            countdownNumber.style.color = 'var(--white)';            
           }
         } else {
           const step = stepsList.shift();
           if(step.tipoPaso === 'serie') {
             this.displayScreen('#activity');            
             if(counterSeries <= dataRoutine.series) {
-              counterSeries++;
-              
+              counterSeries++;              
             }
+
             if(activityScreen.style.display === 'flex') {
               const seriesElement = document.querySelector('#activity counter-fraction[data-series]');
               const roundElement = document.querySelector('#activity counter-fraction[data-round]');
@@ -84,9 +76,7 @@ class ScreenApp extends HTMLElement {
 
               if(counterSeries > dataRoutine.series) {
                 counterSeries = 1;
-                counterRound++;
-                //console.log("counterSeries cuando es mayor a series, se convierte en: ", counterSeries);
-                
+                counterRound++;                
               }
               numSeries.textContent = counterSeries;
               denSeries.textContent = dataRoutine.series;
@@ -100,7 +90,6 @@ class ScreenApp extends HTMLElement {
               for(exercise of exercisesList) {
                 if(step.datos.id == exercise.dataset.id) {
                   titleNormal.textContent = exercise.dataset.abrev;
-                  //console.log(exercise.dataset.abrev);
                 }
               }
             }
@@ -129,15 +118,15 @@ class ScreenApp extends HTMLElement {
             countdownNumber.style.color = 'var(--middle-blue)'; 
             countdownNumber.textContent = counter;            
           }
+
           if(stepsList.length <= 0) {
             clearInterval(interval);
             this.displayScreen('#finish-training');
           }
         } 
         countdownNumber.textContent = counter;
-    }, 1);
-  }
-  
+    }, 10);
+  }  
 }
 
 customElements.define("screen-app", ScreenApp);

@@ -1,270 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="../public/img/logo-small.png" type="image/x-icon">
-  <link rel="stylesheet" href="../public/css/main-styles.css">
-  <title>Tabifit App</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../public/img/logo-small.png" type="image/x-icon">
+    <link rel="stylesheet" href="../public/css/main-styles.css">
+    <title>Tabifit App</title>
+  </head>
+  <body>
 
-<!-- ////////////SCREENS' STRUCTURE//////////// -->
- 
-  <!-- Screen 1: Welcome -->
-  <screen-app id="welcome">
-    <img src="../public/img/logo-big.png" alt="Logo Tabifit">
-    <button-normal id="start">Comenzar</button-normal>
-    <button-normal id="repeat">Repetir sesión</button-normal>  
-  </screen-app>
+  <!-- ////////////SCREENS' STRUCTURE//////////// -->  
+    <!-- Screen 1: Welcome -->
+    <screen-app id="welcome">
+      <img src="../public/img/logo-big.png" alt="Logo Tabifit">
+      <button-normal id="start">Comenzar</button-normal>
+      <button-normal id="repeat">Repetir sesión</button-normal>  
+    </screen-app>
 
-  <!-- Screen 2: Series selection -->
-  <screen-app id="series-selection">
-    <title-special>
-      <span slot="start">¿Cuántas</span>
-      <span slot="keyword">series</span>
-      <span slot="end">querés hacer?</span>
-    </title-special>
-    <counter-choice series="6"></counter-choice>
-    <buttons-container>
-      <button-left></button-left>
-      <button-right></button-right>
-    </buttons-container>
-  </screen-app>
+    <!-- Screen 2: Series selection -->
+    <screen-app id="series-selection">
+      <title-special>
+        <span slot="start">¿Cuántas</span>
+        <span slot="keyword">series</span>
+        <span slot="end">querés hacer?</span>
+      </title-special>
+      <counter-choice series="6"></counter-choice>
+      <buttons-container>
+        <button-left></button-left>
+        <button-right></button-right>
+      </buttons-container>
+    </screen-app>
 
-  <!-- Screen 3: Rounds selection -->
-  <screen-app id="rounds-selection">
-    <title-special>
-      <span slot="start">¿Cuántas</span>
-      <span slot="keyword">vueltas</span>
-      <span slot="end">vas a hacer?</span>
-    </title-special>
-    <counter-choice rounds="2"></counter-choice>
-    <buttons-container>
-      <button-left></button-left>
-      <button-right></button-right>
-    </buttons-container>
-  </screen-app>
+    <!-- Screen 3: Rounds selection -->
+    <screen-app id="rounds-selection">
+      <title-special>
+        <span slot="start">¿Cuántas</span>
+        <span slot="keyword">vueltas</span>
+        <span slot="end">vas a hacer?</span>
+      </title-special>
+      <counter-choice rounds="2"></counter-choice>
+      <buttons-container>
+        <button-left></button-left>
+        <button-right></button-right>
+      </buttons-container>
+    </screen-app>
 
-  <!-- Screen 4: Exercises selection -->
-  <screen-app id="exercises-selection">      
-    <title-special>
-    <span slot="start">¿Qué</span>
-      <span slot="keyword">ejercicios</span>
-      <span slot="end">vas a hacer?</span>
-    </title-special>
-    <exercises-list>      
-    </exercises-list>
-    <buttons-container>
-      <button-left></button-left>
-      <button-right></button-right>
-    </buttons-container>
-  </screen-app>
+    <!-- Screen 4: Exercises selection -->
+    <screen-app id="exercises-selection">      
+      <title-special>
+      <span slot="start">¿Qué</span>
+        <span slot="keyword">ejercicios</span>
+        <span slot="end">vas a hacer?</span>
+      </title-special>
+      <exercises-list>      
+      </exercises-list>
+      <p class="message">Debés elegir al menos un ejercicio.</p>
+      <buttons-container>
+        <button-left></button-left>
+        <button-right></button-right>
+      </buttons-container>
+    </screen-app>
 
-  <!-- Screen 5: Initial countdown -->
-  <screen-app id="preparation">
-    <title-small class="white">comienza en</title-small>
-    <countdown-spinning duration="10" class="countdown" preparation></countdown-spinning>
-    <title-normal>¡vamos!</title-normal>
-  </screen-app>
+    <!-- Screen 5: Initial countdown -->
+    <screen-app id="preparation">
+      <title-small class="white">comienza en</title-small>
+      <countdown-spinning duration="10" class="countdown" preparation></countdown-spinning>
+      <title-normal>¡vamos!</title-normal>
+    </screen-app>
 
-  <!-- Screen 6: Activity -->
-  <screen-app id="activity">
-    <div class="counter-fraction-container">
-      <counter-fraction data-series>
-        <div slot="title">serie</div>        
-      </counter-fraction>
-      <counter-fraction data-round>
-        <div slot="title">vuelta</div>        
-      </counter-fraction>
-    </div>
-    <countdown-spinning duration="20"class="countdown" activity></countdown-spinning>
-    <title-normal>Abs.</title-normal>
-  </screen-app>
+    <!-- Screen 6: Activity -->
+    <screen-app id="activity">
+      <div class="counter-fraction-container">
+        <counter-fraction data-series>
+          <div slot="title">serie</div>        
+        </counter-fraction>
+        <counter-fraction data-round>
+          <div slot="title">vuelta</div>        
+        </counter-fraction>
+      </div>
+      <countdown-spinning duration="20"class="countdown" activity></countdown-spinning>
+      <title-normal>Abs.</title-normal>
+    </screen-app>
 
-  <!-- Screen 7: Pause -->
-  <screen-app id="pause">
-    <title-small>relax</title-small>
-    <countdown-spinning duration="10" pause></countdown-spinning>
-    <title-normal>¡vamos!</title-normal>
-  </screen-app>
+    <!-- Screen 7: Pause -->
+    <screen-app id="pause">
+      <title-small>relax</title-small>
+      <countdown-spinning duration="10" pause></countdown-spinning>
+      <title-normal>¡vamos!</title-normal>
+    </screen-app>
 
-  <!-- Screen 8:  Finishing the training-->
-  <screen-app id="finish-training">
-    <title-normal>¡LISTO!</title-normal>
-    <img src="../public/img/logo-big.png" alt="Logo Tabifit">
-    <button-normal id="save">guardar actividad</button-normal>
-    <button-normal id="logout">salir</button-normal>
-  </screen-app>
+    <!-- Screen 8:  Finishing the training-->
+    <screen-app id="finish-training">
+      <title-normal>¡LISTO!</title-normal>
+      <img src="../public/img/logo-big.png" alt="Logo Tabifit">
+      <button-normal id="save">guardar actividad</button-normal>
+      <button-normal id="logout">salir</button-normal>
+    </screen-app>
 
-  <!-- Screen 9: Archive selection -->
-  <screen-app id="archive-selection">
-    <title-special>
-      <span slot="start">Elegí la</span>
-      <span slot="keyword">sesión</span>
-      <span slot="end">a repetir.</span>
-    </title-special>
-    <form action="/entrenamientos/importar" method="post" enctype="multipart/form-data">
-      <button-normal>      
-        <input type="file" name='tabifit-file' onchange="createRoutineFromFile(this)"/>
-        abrir desde archivo          
-      </button-normal>      
-    </form>
-    <p class="message"></p>
-    <buttons-container>
-      <button-left></button-left>
-      <button-right grey></button-right>
-    </buttons-container>
-  </screen-app>
+    <!-- Screen 9: Archive selection -->
+    <screen-app id="archive-selection">
+      <title-special>
+        <span slot="start">Elegí la</span>
+        <span slot="keyword">sesión</span>
+        <span slot="end">a repetir.</span>
+      </title-special>
+      <form action="/entrenamientos/importar" method="post" enctype="multipart/form-data">
+        <button-normal>      
+          <input type="file" name='tabifit-file' onchange="createRoutineFromFile(this)"/>
+          abrir desde archivo          
+        </button-normal>      
+      </form>
+      <p class="message"></p>
+      <buttons-container>
+        <button-left></button-left>
+        <button-right grey></button-right>
+      </buttons-container>
+    </screen-app>
 
-  <!-- Screen 10: Training saved -->
-  <screen-app id="training-verification">
-    <title-special>
-      <span slot="start">Esta es la</span>
-      <span slot="keyword">sesión</span>
-      <span slot="end">a repetir.</span>
-    </title-special>
-    <activity-info>
-      <span slot="title">Series</span>
-      <span class="series" slot="number">0</span>
+    <!-- Screen 10: Training saved -->
+    <screen-app id="training-verification">
+      <title-special>
+        <span slot="start">Esta es la</span>
+        <span slot="keyword">sesión</span>
+        <span slot="end">a repetir.</span>
+      </title-special>
+      <activity-info>
+        <span slot="title">Series</span>
+        <span class="series" slot="number">0</span>
 
-    </activity-info>
-    <activity-info>
-      <span slot="title">Vueltas</span>
-      <span class="rounds" slot="number">0</span>
-    </activity-info>
-    <exercises-archive>
-      <span slot="title">Ejercicios</span>
-      <p class="exercises" slot="exercises"></p>
-    </exercises-archive>
-    <buttons-container>
-      <button-left></button-left>
-      <button-right></button-right>
-    </buttons-container>
-  </screen-app>
+      </activity-info>
+      <activity-info>
+        <span slot="title">Vueltas</span>
+        <span class="rounds" slot="number">0</span>
+      </activity-info>
+      <exercises-archive>
+        <span slot="title">Ejercicios</span>
+        <p class="exercises" slot="exercises"></p>
+      </exercises-archive>
+      <buttons-container>
+        <button-left></button-left>
+        <button-right></button-right>
+      </buttons-container>
+    </screen-app>
 
   <!-- ////////////TEMPLATES' DECLARATION//////////// -->
 
-<!-- TEMPLATES' DECLARATION -->
-  <template id="screen-app">    
-    <slot></slot>    
-    <link rel="stylesheet" href="../public/components/screen-app/screen-app.css">
-  </template>  
+  <!-- TEMPLATES' DECLARATION -->
+    <template id="screen-app">    
+      <slot></slot>    
+      <link rel="stylesheet" href="../public/components/screen-app/screen-app.css">
+    </template>  
 
-  <template id="title-special">    
-      <div class="start"><slot name="start">Title fragment</slot></div>
-      <div class="keyword"><slot name="keyword">keyword</slot></div>
-      <div class="end"><slot name="end">Title fragment</slot></div>    
-    <link rel="stylesheet" href="../public/components/title-special/title-special.css">
-  </template>
+    <template id="title-special">    
+        <div class="start"><slot name="start">Title fragment</slot></div>
+        <div class="keyword"><slot name="keyword">keyword</slot></div>
+        <div class="end"><slot name="end">Title fragment</slot></div>    
+      <link rel="stylesheet" href="../public/components/title-special/title-special.css">
+    </template>
 
-  <template id="title-normal">
-    <h1><slot></slot></h1>
-    <link rel="stylesheet" href="../public/components/title-normal/title-normal.css">
-  </template>
-  
-  <template id="title-small">      
-    <h1><slot>Small Title</slot></h1>
-    <link rel="stylesheet" href="../public/components/title-small/title-small.css">
-  </template>
-
-  <template id="button-left">
-    <button><img src="../public/img/nav-left-glyp.svg" alt=""></button>
-    <link rel="stylesheet" href="../public/components/button-left/button-left.css">
-  </template>
-
-  <template id="button-right">
-    <button><img src="../public/img/nav-right-glyph.svg" alt=""></button>
-    <link rel="stylesheet" href="../public/components/button-right/button-right.css">
-  </template>
-
-  <template id="buttons-container">
-    <slot></slot>
-    <link rel="stylesheet" href="../public/components/buttons-container/buttons-container.css">
-  </template>
-
-  <template id="button-normal">
-    <button><slot>Normal button</slot></button>
-    <link rel="stylesheet" href="../public/components/button-normal/button-normal.css">
-  </template>
-
-  <template id="counter-choice">
-    <button class="decrement"><img src="../public/img/minus.svg" alt=""></button>
-    <input type="number" value="0">  
-    <button class="increment"><img src="../public/img/plus.svg" alt=""></button>
-    <link rel="stylesheet" href="../public/components/counter-choice/counter-choice.css">
-  </template>
-
-  <template id="countdown-spinning">
-    <div class="circle">      
-    </div>
-    <div class="number"></div>   
-    <link rel="stylesheet" href="../public/components/countdown-spinning/countdown-spinning.css">
-  </template>
-
-  <template id="countdown-beating">
-    <div class="circle" custom-color></div>  
-    <div class="number" custom-color></div>    
+    <template id="title-normal">
+      <h1><slot></slot></h1>
+      <link rel="stylesheet" href="../public/components/title-normal/title-normal.css">
+    </template>
     
-    <link rel="stylesheet" href="../public/components/countdown-beating/countdown-beating.css">
-  </template>
+    <template id="title-small">      
+      <h1><slot>Small Title</slot></h1>
+      <link rel="stylesheet" href="../public/components/title-small/title-small.css">
+    </template>
 
-  <template id="counter-fraction">
-    <h1><slot name="title">title</slot></h1>
-    <div class="container">
-      <div class="numerator"><slot name="numerator">0</slot></div>
-      <div>/</div>
-      <div class="denominator"><slot name="denominator">0</slot></div>
-    </div>
-    
-    <link rel="stylesheet" href="../public/components/counter-fraction/counter-fraction.css">
-  </template>
+    <template id="button-left">
+      <button><img src="../public/img/nav-left-glyp.svg" alt=""></button>
+      <link rel="stylesheet" href="../public/components/button-left/button-left.css">
+    </template>
 
-  <template id="activity-info">
-    <h1><slot name="title">Keyword</slot></h1>
-    <div><slot name="number">0</slot></div>
-    <link rel="stylesheet" href="../public/components/activity-info/activity-info.css">
-  </template>
+    <template id="button-right">
+      <button><img src="../public/img/nav-right-glyph.svg" alt=""></button>
+      <link rel="stylesheet" href="../public/components/button-right/button-right.css">
+    </template>
 
-  <template id="exercises-list">
-    <slot></slot>
-    <link rel="stylesheet" href="../public/components/excercises-list/exercises-list.css">
-  </template>
+    <template id="buttons-container">
+      <slot></slot>
+      <link rel="stylesheet" href="../public/components/buttons-container/buttons-container.css">
+    </template>
 
-  <template id="exercise-item">
-    <label class="container"><slot>Item</slot>
-      <input type="checkbox">
-      <span class="checkmark"></span>
-    </label>    
-    <link rel="stylesheet" href="../public/components/exercise-item/exercise-item.css">
-  </template>
+    <template id="button-normal">
+      <button><slot>Normal button</slot></button>
+      <link rel="stylesheet" href="../public/components/button-normal/button-normal.css">
+    </template>
 
-  <template id="exercises-archive">
-    <h1><slot name="title">Title</slot></h1>
-    <p><slot name="exercises"></slot></p> 
-    <link rel="stylesheet" href="../public/components/exercises-archive/exercises-archive.css">
-  </template>
-  
+    <template id="counter-choice">
+      <button class="decrement"><img src="../public/img/minus.svg" alt=""></button>
+      <input type="number" value="0">  
+      <button class="increment"><img src="../public/img/plus.svg" alt=""></button>
+      <link rel="stylesheet" href="../public/components/counter-choice/counter-choice.css">
+    </template>
 
-  <script src="../public/js/utils.js"></script>
-  <script src="../public/js/navigation.js"></script>
-  <script src="../public/js/routine.js"></script>
-  <script src="../public/js/main.js"></script>
-  <script src="../public/components/button-normal/button-normal.js"></script>
-  <script src="../public/components/button-left/button-left.js"></script>
-  <script src="../public/components/button-right/button-right.js"></script>
-  <script src="../public/components/buttons-container/buttons-container.js"></script>
-  <script src="../public/components/countdown-beating/countdown-beating.js"></script>
-  <script src="../public/components/countdown-spinning/countdown-spinning.js"></script>
-  <script src="../public/components/counter-choice/counter-choice.js"></script>
-  <script src="../public/components/counter-fraction/counter-fraction.js"></script>
-  <script src="../public/components/excercises-list/exercises-list.js"></script>
-  <script src="../public/components/exercise-item/exercise-item.js"></script>
-  <script src="../public/components/exercises-archive/exercises-archive.js"></script>
-  <script src="../public/components/screen-app/screen-app.js"></script>
-  <script src="../public/components/title-normal/title-normal.js"></script>
-  <script src="../public/components/title-small/title-small.js"></script>
-  <script src="../public/components/title-special/title-special.js"></script>
-  <script src="../public/components/activity-info/activity-info.js"></script>  
-</body>
+    <template id="countdown-spinning">
+      <div class="circle">      
+      </div>
+      <div class="number"></div>   
+      <link rel="stylesheet" href="../public/components/countdown-spinning/countdown-spinning.css">
+    </template>  
+
+    <template id="counter-fraction">
+      <h1><slot name="title">title</slot></h1>
+      <div class="container">
+        <div class="numerator"><slot name="numerator">0</slot></div>
+        <div>/</div>
+        <div class="denominator"><slot name="denominator">0</slot></div>
+      </div>
+      
+      <link rel="stylesheet" href="../public/components/counter-fraction/counter-fraction.css">
+    </template>
+
+    <template id="activity-info">
+      <h1><slot name="title">Keyword</slot></h1>
+      <div><slot name="number">0</slot></div>
+      <link rel="stylesheet" href="../public/components/activity-info/activity-info.css">
+    </template>
+
+    <template id="exercises-list">
+      <slot></slot>
+      <link rel="stylesheet" href="../public/components/excercises-list/exercises-list.css">
+    </template>
+
+    <template id="exercise-item">
+      <label class="container"><slot>Item</slot>
+        <input type="checkbox">
+        <span class="checkmark"></span>
+      </label>    
+      <link rel="stylesheet" href="../public/components/exercise-item/exercise-item.css">
+    </template>
+
+    <template id="exercises-archive">
+      <h1><slot name="title">Title</slot></h1>
+      <p><slot name="exercises"></slot></p> 
+      <link rel="stylesheet" href="../public/components/exercises-archive/exercises-archive.css">
+    </template>  
+
+    <script src="../public/js/utils.js"></script>
+    <script src="../public/js/navigation.js"></script>
+    <script src="../public/js/routine.js"></script>
+    <script src="../public/js/main.js"></script>
+    <script src="../public/components/button-normal/button-normal.js"></script>
+    <script src="../public/components/button-left/button-left.js"></script>
+    <script src="../public/components/button-right/button-right.js"></script>
+    <script src="../public/components/buttons-container/buttons-container.js"></script>
+    <script src="../public/components/countdown-spinning/countdown-spinning.js"></script>
+    <script src="../public/components/counter-choice/counter-choice.js"></script>
+    <script src="../public/components/counter-fraction/counter-fraction.js"></script>
+    <script src="../public/components/excercises-list/exercises-list.js"></script>
+    <script src="../public/components/exercise-item/exercise-item.js"></script>
+    <script src="../public/components/exercises-archive/exercises-archive.js"></script>
+    <script src="../public/components/screen-app/screen-app.js"></script>
+    <script src="../public/components/title-normal/title-normal.js"></script>
+    <script src="../public/components/title-small/title-small.js"></script>
+    <script src="../public/components/title-special/title-special.js"></script>
+    <script src="../public/components/activity-info/activity-info.js"></script>  
+  </body>
 </html>

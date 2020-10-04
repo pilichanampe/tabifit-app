@@ -16,8 +16,7 @@ router.get('/', (req, res, next) => {
 });
 
 //POST adicional a los requeridos en el trabajo, creado para poder agregar más ejercicios a través de Insomnia o Postman en la base de datos.
-router.post('/', (req, res, next) => {
-  // Manejo de errores por falta de campos requeridos.
+router.post('/', (req, res, next) => {  
   if (!req.body.nombre) {
     res.status(400).send({ error: {
       tipo: "falta_parametro",
@@ -33,7 +32,6 @@ router.post('/', (req, res, next) => {
     return
   }
   
-  // Agrego a la base de datos el nuevo ejercicio
   db('ejercicios')
   .insert({
     nombre: req.body.nombre,
@@ -44,10 +42,9 @@ router.post('/', (req, res, next) => {
   })
 })
 
-// DELETE agregado por si se quiere eliminar algún ejercicio que se haya creado y no se quiera que esté.
+// DELETE adicional a los requerimientos del trabajo, agregado por si se quiere eliminar algún ejercicio que se haya creado.
 router.delete("/", (req, res, next) => {
- // Manejo de errores por falta de campos requeridos.
- if (!req.body.nombre) {
+  if (!req.body.nombre) {
   res.status(400).send({ error: {
     tipo: "falta_parametro",
     detalle: "nombre"

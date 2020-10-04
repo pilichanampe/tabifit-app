@@ -1,7 +1,6 @@
 class TitleSpecial extends HTMLElement {
   constructor() {
     super();
-
     loadTemplate("#title-special", this);
   }; 
 }

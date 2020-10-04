@@ -18,7 +18,6 @@ class Navigation {
   }
 }
 
-
 /// Navigation Screen 1: Welcome ///
 const welcomeNav = new Navigation('#welcome', '#welcome #repeat', '#welcome #start');
 
@@ -41,7 +40,7 @@ roundsNav.isClicked(roundsNav.nextButton, '#exercises-selection');
 const exercisesNav = new Navigation('#exercises-selection', '#exercises-selection button-left', '#exercises-selection button-right');
 
 exercisesNav.isClicked(exercisesNav.prevButton, '#rounds-selection');
-exercisesNav.isClicked(exercisesNav.nextButton, '#preparation');
+//exercisesNav.isClicked(exercisesNav.nextButton, '#preparation');
 
 /// Navigation Screen 5: Preparation ///
 const prepNav = new Navigation('#preparation', '#preparation title-normal', '#preparation countdown-spinning');

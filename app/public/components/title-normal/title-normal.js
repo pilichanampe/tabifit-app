@@ -1,7 +1,6 @@
 class TitleNormal extends HTMLElement {
   constructor() {
     super();
-
     loadTemplate("#title-normal", this);
   }; 
 }

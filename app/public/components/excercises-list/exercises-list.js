@@ -1,7 +1,6 @@
 class ExercisesList extends HTMLElement {
   constructor() {
     super();
-
     loadTemplate("#exercises-list", this);
   }; 
 }
