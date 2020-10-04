@@ -100,30 +100,36 @@ router.post('/', (req, res) => {
 });*/
 
 router.post('/importar', (req, res) => {
-  console.log('req completo ', req.body);  
-  db('entrenamientos')
-  .insert({
-    // tengo que construir una fecha utilizando los métodos del objeto. Si no, me devuelve el objeto completo
-    fecha: new Date().toJSON(),     
-    vueltas: req.body.vueltas,
-    series: req.body.series,
-    // por qué me devuelve una string y no una lista??? Porque la base de datos devuelve string, está bien que sea así.
-    lista_ejercicios: req.body.ejercicios      
-   })
-   .returning(["id", "fecha", "vuelta", "series", "ejercicios"])
-   //Acá armo las respuestas como quiero
-  .then(data => {
-    //Acá tengo que acomodar la respuesta como yo quiero... pasosVuelta, etc...    
-    res.status(201).send({ 
-      id: data[0],
+  if(!(req.body.vueltas && req.body.series && req.body.ejercicios && req.body.pasosVuelta)) {
+    res.status(400).send({
+      error: {
+        tipo: 'formato_invalido'
+      }
+    });
+  } else {  
+    db('entrenamientos')
+    .insert({
+      // tengo que construir una fecha utilizando los métodos del objeto. Si no, me devuelve el objeto completo
       fecha: new Date().toJSON(),     
       vueltas: req.body.vueltas,
       series: req.body.series,
-      ejercicios: req.body.ejercicios,
-      pasosVuelta: req.body.pasosVuelta
-    });
-      
-  });  
+      // por qué me devuelve una string y no una lista??? Porque la base de datos devuelve string, está bien que sea así.
+      lista_ejercicios: req.body.ejercicios      
+    })
+    .returning(["id", "fecha", "vuelta", "series", "ejercicios"])
+    //Acá armo las respuestas como quiero
+    .then(data => {
+      //Acá tengo que acomodar la respuesta como yo quiero... pasosVuelta, etc...    
+      res.status(201).send({ 
+        id: data[0],
+        fecha: new Date().toJSON(),     
+        vueltas: req.body.vueltas,
+        series: req.body.series,
+        ejercicios: req.body.ejercicios,
+        pasosVuelta: req.body.pasosVuelta
+      });        
+    }); 
+  } 
 });
 
 
@@ -190,87 +196,86 @@ router.get('/:id', (req, res, next) => {
   });   
 });
 
-
-router.get('/:id/exportar', (req, res, next) => {
-  //console.log('entre al get');
-  
-
-  const fileToDownload = path.resolve(__dirname, `../../${req.params.id}.fit`); // path valido
-  //const fileToDownload = path.resolve(__dirname, `../../../../../../${req.params.id}.fit`); // path invalido para probar error en download
-  const fileName = `${req.params.id}.fit`
-
-  //console.log('fileToDownload: ',fileToDownload)
-  //console.log('fileName: ',fileName)
-  
-  res.download(fileToDownload, fileName, function (err) {
-    if (err) {
-      console.log('error detectado en el download')
-      console.log('err: ', err)
-      res.sendStatus(400);
-    } else {
-      res.sendStatus(200);
+// GET adicional al trabajo, para poder descargar archivo desde el browser pegando a la ruta del backend.
+router.get('/:id/exportar', (req, res, next) => { 
+  const fileToDownload = path.resolve(__dirname, `../../${req.params.id}.fit`);
+  const fileName = `${req.params.id}.fit`  
+  res.download(fileToDownload, fileName, err => {
+    if (err) {      
+      res.status(404).send({
+        error: {
+          tipo: 'archivo_no_encontrado'
+        }
+      });
     }    
   });
 });
 
-/*
-router.get('/:id/exportar', (req, res) => {
-  
-  // Leer archivo utilizado fs.
-  const routineFile = fs.readFileSync(`./${req.params.id}.fit`); 
- 
-  res.set({
-    // Cómo se envía el contenido, si inline (no genera una descarga)
-    // o como un descargable.
-    "content-disposition": "attachment; filename=descarga.txt"
-  });
-  res.download(path.resolve(__dirname, `./${req.params.id}.fit`), `./${req.params.id}.fit`);
-});
-*/
-
-
 // Para actualizar la duración total del entrenamiento
-router.put('/:id', (req, res) => {
-  const duration = req.body;
-  //console.log(duration);
-  
-  db('entrenamientos')
-  .where('id', req.params.id)
-  .update(duration)
-  .then(durationUpdated => {
-    res.status(201).send({
-      id: req.params.id, 
-      duracion: duration
+router.put('/:id', (req, res) => {  
+  if(!(req.body.duracion && Object.keys(req.body).length === 1)) {
+    res.status(400).send({
+      error: {
+        tipo: 'atributo_no_permitido'
+      }
+    })
+  } else {
+    db.select()
+    .from('entrenamientos').where('entrenamientos.id', req.params.id)
+    .then( entrenamientos => {
+      if(entrenamientos.length === 0) {
+        res.status(404).send({
+          error: {
+            tipo: 'entrenamiento_no_existe'
+          }
+        });
+      } else {
+        db('entrenamientos')
+        .where('id', req.params.id)
+        .update({ lista_ejercicios: req.body.ejercicios })
+        .then(entrenamiento => {          
+          res.status(200).send({
+            id: req.params.id, 
+            duracion: req.body.duracion
+          });      
+        })  
+      }
     });
-    //console.log('durationUpdated: ', durationUpdated);
-  })  
+  }  
 });
 
 
 
 
 router.get('/:id/ejercicios', (req, res, next) => {
-    
   db.select()
   .from('entrenamientos').where('entrenamientos.id', req.params.id)
-  .then( entrenamientos => {
-    const exercisesList = entrenamientos[0].lista_ejercicios.split(',');
-    db.select()
-    .from('ejercicios')
-    .then( ejercicios => {
-      let exercises = [];
-      for(let i = 0; i < ejercicios.length; i++) {
-        for(let j = 0; j < exercisesList.length; j++ ) {       
-          if(ejercicios[i].id === parseInt(exercisesList[j])) {
-            exercises.push(ejercicios[i]);            
-          }  
+  .then(entrenamientos => {
+    if(entrenamientos.length === 0) {
+      res.status(404).send({
+        error: {
+          tipo: 'entrenamiento_no_existe'
         }
-      }      
-      res.send({ 
-        id: entrenamientos[0].id,
-        ejercicios: exercises
-      });      
-    });    
+      });
+    } else {
+      const exercisesList = entrenamientos[0].lista_ejercicios.split(',');
+      db.select()
+      .from('ejercicios')
+      .then( ejercicios => {
+        let exercises = [];
+        for(let i = 0; i < ejercicios.length; i++) {
+          for(let j = 0; j < exercisesList.length; j++ ) {       
+            if(ejercicios[i].id === parseInt(exercisesList[j])) {
+              exercises.push(ejercicios[i]);            
+            }  
+          }
+        }      
+        res.status(200).send({ 
+          id: entrenamientos[0].id,
+          ejercicios: exercises
+        });      
+      });    
+    }
   });
 });
 
