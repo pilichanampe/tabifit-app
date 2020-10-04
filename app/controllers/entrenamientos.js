@@ -232,7 +232,7 @@ router.put('/:id', (req, res) => {
       } else {
         db('entrenamientos')
         .where('id', req.params.id)
-        .update({ lista_ejercicios: req.body.ejercicios })
+        .update({ duracion: req.body.duracion })
         .then(entrenamiento => {          
           res.status(200).send({
             id: req.params.id, 
