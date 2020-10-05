@@ -70,9 +70,9 @@ function saveRoutine(routineId) {
     let routinePost = await fetch(`/entrenamientos/${routineId}/exportar`, options);
     
     //Rutina guardada desde el frontend, ya que había inconvenientes con el botón para poder guardarla. De todos modos, si se le pega a la ruta del backend directamente con el id que se quiera exportar, también está en funcionamiento.
-    const elementFile = document.createElement('a')
-    elementFile.href = `data:application/octet-stream;charset=utf-8;utf-8,${routineString}`
-    elementFile.download = `${routineId}.fit`
+    const elementFile = document.createElement('a');
+    elementFile.href = `data:application/octet-stream;charset=utf-8;utf-8,${routineString}`;
+    elementFile.download = `${routineId}.fit`;
     document.body.appendChild(elementFile);
     elementFile.click();
     document.body.removeChild(elementFile);    
