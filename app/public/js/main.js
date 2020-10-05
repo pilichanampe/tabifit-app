@@ -19,13 +19,34 @@ function getRoutine() {
   const button = document.querySelector('#exercises-selection button-right');
   const exercisesNav = new Navigation('#exercises-selection', '#exercises-selection button-left', '#exercises-selection button-right');
   const ejercicios = [];
-  const exerciseList = document.querySelector('#exercises-selection exercises-list'); 
+  const exerciseList = document.querySelector('#exercises-selection exercises-list');
+  const message = document.querySelector('#exercises-selection .message');  
+  
+  
+  exerciseList.addEventListener('click', e => {
+    let exercisesChecked = []
+    // Analisis para detectar duplicacion de evento.
+    if (e.detail === 1) {
+      return;
+    } 
+    for(exercise of exerciseList.children) {
+      if(exercise.isChecked()) {       
+        exercisesChecked.push(parseInt(exercise.dataset.id));
+      }      
+    }
+    if (exercisesChecked.length > 0){      
+      button.changeColor('var(--middle-blue)');
+      message.style.visibility = 'hidden';
+    }else{      
+      button.changeColor('var(--light-grey)');
+      message.style.visibility = 'visible';
+    }
+  });  
   
   button.addEventListener('click', async () => {
     const numberSeries = document.querySelector('#series-selection counter-choice').counter; 
     const numberRounds = document.querySelector('#rounds-selection counter-choice').counter;
-    const screen = document.querySelector('#preparation');
-    const message = document.querySelector('#exercises-selection .message');    
+    const screen = document.querySelector('#preparation');       
     
     for(exercise of exerciseList.children) {
       if(exercise.isChecked()) {       
@@ -35,8 +56,7 @@ function getRoutine() {
 
     if(ejercicios.length === 0) {      
       return;    
-    } else {   
-      exercisesNav.isClicked(exercisesNav.nextButton, '#preparation');
+    } else {       
       const routine = { 
         series: numberSeries,
         vueltas: numberRounds,
