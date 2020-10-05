@@ -1,0 +1,47 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 8px solid var(--white);
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  width: 270px;
+  height: 270px;
+  position: absolute;
+  /*animation: 1s rotate infinite;*/
+  transform: rotate(-45deg);  
+}
+
+.number {
+  font-family: inherit;
+  font-size: 9rem;
+  font-weight: 700;
+  animation: none;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(-45deg);
+  }
+  100% {
+    transform: rotate(313deg);
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-width: 12px;
+    opacity: 1;
+  }
+  100% {
+    border-width: 7px;
+    opacity: 0.7;
+  }
+}
